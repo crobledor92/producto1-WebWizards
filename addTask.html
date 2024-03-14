@@ -1,5 +1,24 @@
 // interfaz 2
 
 <main>
-    
+    <form onsubmit="addTask(event)">
+        <label>
+            Titulo
+            <input type="text" name="title"></input>
+        </label>
+        <label>
+            Descripción
+            <input type="textarea" name="description"></input>
+        </label>
+        <label>
+            Fecha Limite
+            <input type="datetime" name="endTime"></input>
+        </label>
+        <label>
+            Participantes
+            <input type="text" name="participants"></input>
+        </label>
+        <button type="submit">Crear Tarea</button>
+    </form>
+    <script src="./addTask.js"></script>
 </main>
