@@ -1,59 +1,87 @@
 [
     {
-        "id": "ijiodowi",
+        "id": "column1",
+        "type": "column",
+        "title": "column 1"
+    },
+    {
+        "id": "tag1",
+        "type": "tag",
+        "id_father": "column2",
         "title": "Team Meeting",
         "description": "Discuss project updates and next steps",
         "endtime": "2024-03-15T10:00:00",
-        "participants": [
-            "John",
-            "Alice",
-            "David"
-        ]
+        "participants": ["John", "Alice", "David"],
+        "status": true
     },
     {
-        "id": "pe21312pe",
+        "id": "tag2",
+        "type": "tag",
+        "id_father": "column1",
+        "title": "Team Meeting",
+        "description": "Discuss project updates and next steps",
+        "endtime": "2024-03-15T10:00:00",
+        "participants": ["John", "Alice", "David"],
+        "status": true
+    },
+    {
+        "id": "tag3",
+        "type": "tag",
+        "id_father": "column1",
+        "title": "Training Session",
+        "description": "Discuss project updates and next steps",
+        "endtime": "2024-03-15T10:00:00",
+        "participants": ["John", "Alice", "David"],
+        "status": true
+    },
+    {
+        "id": "tag4",
+        "type": "tag",
+        "id_father": "column1",
+        "title": "Team Meeting",
+        "description": "Discuss project updates and next steps",
+        "endtime": "2024-03-15T10:00:00",
+        "participants": ["John", "Alice", "David"],
+        "status": true
+    },
+    {
+        "id": "column2",
+        "type": "column",
+        "title": "column 2"
+    },
+    {
+        "id": "tag5",
+        "type": "tag",
+        "id_father": "column3",
         "title": "Client Presentation",
         "description": "Present new product features to the client",
         "endtime": "2024-03-20T15:30:00",
-        "participants": [
-            "Emily",
-            "Michael",
-            "Sarah",
-            "Tom"
-        ]
+        "participants": ["Emily", "Michael", "Sarah", "Tom"],
+        "status": true
     },
     {
-        "id": "4",
+        "id": "tag6",
+        "type": "tag",
+        "id_father": "column2",
         "title": "Training Session",
         "description": "Training session for new employees",
         "endtime": "2024-03-25T09:00:00",
-        "participants": [
-            "Lucas",
-            "Sophia",
-            "Oliver"
-        ]
+        "participants": ["Lucas", "Sophia", "Oliver"],
+        "status": true
     },
     {
-        "id": "5",
+        "id": "column3",
+        "type": "column",
+        "title": "column 3"
+    },
+    {
+        "id": "tag7",
+        "type": "tag",
+        "id_father": "column3",
         "title": "Project Review",
         "description": "Review progress and address any issues",
         "endtime": "2024-03-18T11:00:00",
-        "participants": [
-            "Ella",
-            "Jack",
-            "Ava"
-        ]
-    },
-    {
-        "id": "6",
-        "title": "Team Lunch",
-        "description": "Casual team lunch to celebrate milestones",
-        "endtime": "2024-03-22T12:30:00",
-        "participants": [
-            "Liam",
-            "Emma",
-            "Noah",
-            "Chloe"
-        ]
+        "participants": ["Ella", "Jack", "Ava"],
+        "status": true
     }
 ]
