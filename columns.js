@@ -97,6 +97,7 @@ function logTagId() {
         });
     });
 }
+
 document.addEventListener('dragstart', handleDragStart);
 document.addEventListener('dragend', handleDragEnd);
 document.addEventListener('dragover', handleDragOver);
