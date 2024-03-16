@@ -6,35 +6,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WebWizards</title>
     <link rel="stylesheet" href="./css/addTask.css">
+    <script src="./js/addTask.js"></script>
 </head>
 
 <body>
     <header>
+        <h1>Hola 😁😁</h1>
     </header>
     <main>
-        <form id="addTaskForm" onsubmit="addTask(event)">
-            <label>
-                Titulo
-                <input id="addTaskInput" type="text" name="title"></input>
-            </label>
-            <label>
-                Descripción
-                <input type="textarea" name="description"></input>
-            </label>
-            <label>
-                Fecha Limite
-                <input type="datetime" name="endTime"></input>
-            </label>
-            <label>
-                Participantes
-                <input type="text" name="participants"></input>
-            </label>
+        <form onsubmit="addTask(event)">
+            <div class="input-form">
+                <label for="title">Titulo</label>
+                <input required type="text" id="title" name="title" />
+            </div>
+            <div class="input-form">
+                <label>Descripción</label>
+                <input required type="text" name="description" />
+            </div>
+            <div class="input-form">
+                <label>Fecha Limite</label>
+                <input required type="datetime-local" name="endTime" />
+            </div>
+            <div class="input-form">
+                <label>Participantes</label>
+                <input required type="text" name="participants" />
+            </div>
             <button type="submit">Crear Tarea</button>
         </form>
-        <script src="./addTask.js"></script>
     </main>
-    <footer>
-    </footer>
 </body>
 
 </html>
