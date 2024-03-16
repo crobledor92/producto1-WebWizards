@@ -2,11 +2,13 @@
     {
         "id": "column1",
         "type": "column",
+        "order": 1,
         "title": "column 1"
     },
     {
         "id": "tag1",
         "type": "tag",
+        "order": 1,
         "id_father": "column2",
         "title": "Team Meeting",
         "description": "Discuss project updates and next steps",
@@ -17,6 +19,7 @@
     {
         "id": "tag2",
         "type": "tag",
+        "order": 2,
         "id_father": "column1",
         "title": "Team Meeting",
         "description": "Discuss project updates and next steps",
@@ -27,6 +30,7 @@
     {
         "id": "tag3",
         "type": "tag",
+        "order": 3,
         "id_father": "column1",
         "title": "Training Session",
         "description": "Discuss project updates and next steps",
@@ -37,6 +41,7 @@
     {
         "id": "tag4",
         "type": "tag",
+        "order": 4,
         "id_father": "column1",
         "title": "Team Meeting",
         "description": "Discuss project updates and next steps",
@@ -47,12 +52,14 @@
     {
         "id": "column2",
         "type": "column",
+        "order": 2,
         "title": "column 2"
     },
     {
         "id": "tag5",
         "type": "tag",
-        "id_father": "column3",
+        "order": 1,
+        "id_father": "column2",
         "title": "Client Presentation",
         "description": "Present new product features to the client",
         "endtime": "2024-03-20T15:30:00",
@@ -62,6 +69,7 @@
     {
         "id": "tag6",
         "type": "tag",
+        "order": 2,
         "id_father": "column2",
         "title": "Training Session",
         "description": "Training session for new employees",
@@ -72,11 +80,13 @@
     {
         "id": "column3",
         "type": "column",
+        "order": 3,
         "title": "column 3"
     },
     {
         "id": "tag7",
         "type": "tag",
+        "order": 1,
         "id_father": "column3",
         "title": "Project Review",
         "description": "Review progress and address any issues",

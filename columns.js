@@ -1,7 +1,6 @@
 fetch('data.json')
     .then(response => response.json())
     .then(data => {
-        console.log(data);
         // Obtener el div con id "columns"
         var columnsDiv = document.getElementById('columns');
         data.forEach(objeto => {
@@ -60,9 +59,12 @@ fetch('data.json')
                 // Footer
                 var footerDiv = document.createElement('div');
                 footerDiv.classList.add('footer');
+                var addTaskLink = document.createElement('a');
+                addTaskLink.href = "/addTask.html";
                 var footerCloseIcon = document.createElement('span');
                 footerCloseIcon.classList.add('x', 'rotate45', 'icon');
-                footerDiv.appendChild(footerCloseIcon);
+                addTaskLink.appendChild(footerCloseIcon);
+                footerDiv.appendChild(addTaskLink);
                 // Añadir elementos a la columna
                 newColumn.appendChild(headerDiv);
                 newColumn.appendChild(tagsDiv);
@@ -80,10 +82,18 @@ fetch('data.json')
 
 function logTagId() {
     const moveIcons = document.querySelectorAll('.move.icon');
+    const editIcons = document.querySelectorAll('.edit.icon');
     moveIcons.forEach(icon => {
-        icon.addEventListener('mousedown', (event) => {
+        icon.addEventListener('mousedown', () => {
             const parentTag = icon.closest('.tag');
             parentTag.setAttribute('draggable', 'true');
+        });
+    });
+    editIcons.forEach(icon => {
+        icon.addEventListener('click', () => {
+            const parentTag = icon.closest('.tag');
+            const parentID = parentTag.id;
+            location.replace("taskDetails.html?id=" + parentID)
         });
     });
 }
@@ -105,22 +115,22 @@ function handleDragEnd(e) {
 function handleDragOver(e) {
     const beingDragged = document.querySelector(".dragging");
     const dragOver = e.target;
-
-    if (dragOver.matches('.tag')) {
-        if (beingDragged.matches('.tag')) {
+    if (dragOver.matches('.tag') || dragOver.matches('.tagEmpty')) {
+        if (beingDragged.matches('.tag') && !isDescendant(beingDragged, dragOver)) {
             allowDrop(e);
+            uptadeColumns();
         }
     }
+}
 
-    if (dragOver.matches('.tags')) {
-        if (beingDragged.matches('.tag')) {
-            allowDrop(e);
+function isDescendant(el, parent) {
+    while (el.parentElement) {
+        if (el.parentElement === parent) {
+            return true;
         }
-
-        if (beingDragged.matches('.tags')) {
-            allowDrop(e);
-        }
+        el = el.parentElement;
     }
+    return false;
 }
 
 function allowDrop(e) {
@@ -144,19 +154,27 @@ function allowDrop(e) {
     }
 }
 
-function colDraggedOver(event) {
-    const dragOver = event.target;
-    const beingDragged = document.querySelector(".dragging"); const draggedParent = beingDragged.parentElement;
-
-    if (draggedParent.id !== dragOver.id && draggedParent.matches('.tags') && dragOver.matches('.tags')) {
-        if (dragOver.childElementCount == 0 || event.clientY > dragOver.children[dragOver.childElementCount - 1].offsetTop) {
-            dragOver.appendChild(beingDragged);
-        }
-    }
-}
 
 function whichChild(el) {
     let i = 0;
     while ((el = el.previousSibling) != null) ++i;
     return i;
+}
+
+function uptadeColumns() {
+    const tags = document.querySelectorAll('.tags');
+
+    tags.forEach(tag => {
+        const tagEmpty = tag.querySelector('.tagEmpty');
+        const hasTag = tag.querySelector('.tag');
+
+        if (!hasTag && !tagEmpty) {
+            const newTager = document.createElement('div');
+            newTager.classList.add('tagEmpty');
+            newTager.textContent = "Columna vacía, añade o arrastra una tarjeta hasta aquí.";
+            tag.appendChild(newTager);
+        } else if (hasTag && tagEmpty) {
+            tag.removeChild(tagEmpty);
+        }
+    });
 }

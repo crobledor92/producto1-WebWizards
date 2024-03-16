@@ -61,6 +61,7 @@
     .col {
         padding: 0.7rem;
         min-width: 17.5rem;
+        width: 300px;
         height: max-content;
         background: #c9c9c9;
         border-radius: 5px;
@@ -72,9 +73,11 @@
         display: flex;
         justify-content: space-between;
     }
-    .col .tagHeader{
+
+    .col .tagHeader {
         border-bottom: 1px solid;
     }
+
     .icon {
         display: inline-block;
         width: 1.2rem;
@@ -113,19 +116,19 @@
     }
 
     .tags {
+        max-height: 70vh;
         margin: 15px 0;
         overflow: auto;
-        padding: 0 10px 15px 0;
-        background: #c4c4c4;
+        padding: 0 10px 0px;
     }
 
     .dragging {
         opacity: 0.5;
     }
 
-    .tag {
+    .tag,
+    .tagEmpty {
         width: -webkit-fill-available;
-        min-height: 100px;
         background-color: rgb(249 249 249);
         margin-bottom: 15px;
         box-shadow: 5px 5px 7px 0px #bbbbbb, inset -4px -4px 13px 4px #e3e3e3;
@@ -142,7 +145,7 @@
     <div id="columns" class="columns">
     </div>
     <button id="addColumn" class="buttonStyle addColumn">
-        <span class="x rotate45"></span>
+        <span class="x rotate45 icon"></span>
     </button>
 </main>
 <script src="columns.js"></script>
