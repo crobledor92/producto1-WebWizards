@@ -96,7 +96,6 @@ function logTagId() {
             const parentTag = icon.closest('.tag');
             const parentID = parentTag.id;
                 //Llamar a la funcion abrir modal
-                console.log("hola");
                 openPopUp(parentID);
         });
     });
