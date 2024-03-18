@@ -9,7 +9,7 @@ fetch('data.json')
                 var taskInfo = document.createElement("div");
                 taskInfo.classList.add("task-info");
                 var taskSubtitle = document.createElement("h2");
-                taskSubtitle.textContent = "Tarea:";
+                var title2Div = createInputDiv("Tarea:", "description", "text", Object.title);
                 var descriptionDiv = createInputDiv("Descripción:", "description", "text", Object.description);
                 var dateDiv = createInputDiv("Fecha limite:", "date", "datetime-local", Object.endtime);
                 var participantsDiv = createInputDiv("Participantes:", "participants", "text", Object.participants);
@@ -27,7 +27,7 @@ fetch('data.json')
                     return div;
                 }
                 // Agregar los elementos al documento
-                taskInfo.appendChild(taskSubtitle);
+                taskInfo.appendChild(title2Div);
                 taskInfo.appendChild(descriptionDiv);
                 taskInfo.appendChild(dateDiv);
                 taskInfo.appendChild(participantsDiv);
