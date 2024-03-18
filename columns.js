@@ -100,23 +100,6 @@ function logTagId() {
             const parentTag = icon.closest('.tag');
             const parentID = parentTag.id;
             openPopUp(parentID);
-            document.querySelectorAll('.closeButton').forEach(button => {
-                button.addEventListener('click', () => {
-                    document.getElementById('modal').remove();
-                });
-            });
-            document.querySelectorAll('.saveButton').forEach(button => {
-                button.addEventListener('click', () => {
-                    try {
-                        //Implementar logica para guardar cambios.
-                        document.getElementById('columns').innerHTML = "";
-                        console.log("limpio");
-                        dynamicColumn();
-                    } catch (error) {
-                        console.log(error);
-                    }
-                });
-            });
         });
     });
 }

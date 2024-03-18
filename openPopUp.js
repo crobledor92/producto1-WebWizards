@@ -98,6 +98,23 @@ export function openPopUp(getID) {
                     modalDiv.appendChild(modalDialogDiv);
                     // Agregar el modal al cuerpo del taskDetailModal
                     taskDetailModal.appendChild(modalDiv);
+                    document.querySelectorAll('.closeButton').forEach(button => {
+                        button.addEventListener('click', () => {
+                            document.getElementById('modal').remove();
+                        });
+                    });
+                    document.querySelectorAll('.saveButton').forEach(button => {
+                        button.addEventListener('click', () => {
+                            try {
+                                //Implementar logica para guardar cambios.
+                                document.getElementById('columns').innerHTML = "";
+                                console.log("limpio");
+                                dynamicColumn();
+                            } catch (error) {
+                                console.log(error);
+                            }
+                        });
+                    });
                 }
             });
         })
