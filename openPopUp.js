@@ -12,9 +12,17 @@ export function openPopUp(id) {
         .then(res => res.text())
         .then(html => {
             document.getElementById('taskDetailModal').innerHTML = html;
+
+
+            document.getElementById('modal').style.display = "block";
+            document.querySelectorAll('.closeButton').forEach(button => {
+                button.addEventListener('click', () => {
+                    document.getElementById('modal').remove();
+                });
+            });
         })
         .catch(error => console.error('Error loading header:', error))
-
+      
     // var title = document.createElement("h1");
     // title.textContent = Object.title;
     // var taskInfo = document.createElement("div");
