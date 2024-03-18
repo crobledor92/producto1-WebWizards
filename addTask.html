@@ -1,5 +1,40 @@
-// interfaz 2
+<!DOCTYPE html>
+<html lang="en">
 
-<main>
-    
-</main>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebWizards</title>
+    <link rel="stylesheet" href="./css/addTask.css">
+</head>
+
+<body>
+    <header>
+    </header>
+    <main>
+        <form id="addTaskForm" onsubmit="addTask(event)">
+            <label>
+                Titulo
+                <input id="addTaskInput" type="text" name="title"></input>
+            </label>
+            <label>
+                Descripción
+                <input type="textarea" name="description"></input>
+            </label>
+            <label>
+                Fecha Limite
+                <input type="datetime" name="endTime"></input>
+            </label>
+            <label>
+                Participantes
+                <input type="text" name="participants"></input>
+            </label>
+            <button type="submit">Crear Tarea</button>
+        </form>
+        <script src="./addTask.js"></script>
+    </main>
+    <footer>
+    </footer>
+</body>
+
+</html>
