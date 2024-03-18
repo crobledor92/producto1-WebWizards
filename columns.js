@@ -1,3 +1,5 @@
+import { openPopUp } from "./openpopup.js";
+
 fetch('data.json')
     .then(response => response.json())
     .then(data => {
@@ -93,7 +95,9 @@ function logTagId() {
         icon.addEventListener('click', () => {
             const parentTag = icon.closest('.tag');
             const parentID = parentTag.id;
-            location.replace("taskDetails.html?id=" + parentID)
+                //Llamar a la funcion abrir modal
+                console.log("hola");
+                openPopUp(parentID);
         });
     });
 }
