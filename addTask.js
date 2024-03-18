@@ -9,4 +9,5 @@ function addTask(event) {
     }
     console.log(taskData)
 
+    window.location.href="dashboard.html"
 }
