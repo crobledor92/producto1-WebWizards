@@ -141,15 +141,36 @@
         .tag,
         .tagEmpty {
             width: -webkit-fill-available;
-            background-color: rgb(249 249 249);
             margin-bottom: 15px;
-            box-shadow: 5px 5px 7px 0px #bbbbbb, inset -4px -4px 13px 4px #e3e3e3;
             border-radius: 5px;
             padding: 10px;
         }
 
+        #columnComplete .tag {
+            box-shadow: 5px 5px 7px 0px #bbbbbb, inset -4px -4px 13px 4px #ffafaf;
+            background-color: rgb(255 208 208);
+        }
+
+        #columnCurrent .tag {
+            box-shadow: 5px 5px 7px 0px #bbbbbb,  inset -4px -4px 13px 4px #b7ffb7;
+            background-color: rgb(220 255 210);
+        }
+
+        #columnPending .tag {
+            box-shadow: 5px 5px 7px 0px #bbbbbb,  inset -4px -4px 13px 4px #a1d3ff;
+            background-color: rgb(206 235 255);
+        }
+
+        .tagEmpty {
+            background-color: rgb(249 249 249);
+            box-shadow: 5px 5px 7px 0px #bbbbbb,  inset -4px -4px 13px 4px #e3e3e3;
+        }
         .rotate45 {
             rotate: 45deg;
+        }
+
+        .modal {
+            background: #c3c3c3b8;
         }
     </style>
     <header></header>
