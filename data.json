@@ -1,24 +1,8 @@
 [
     {
-        "id": "columnPending",
-        "type": "column",
-        "title": "Tareas pendientes"
-    },
-    {
-        "id": "columnCurrent",
-        "type": "column",
-        "title": "Tareas en curso"
-    },
-    {
-        "id": "columnComplete",
-        "type": "column",
-        "title": "Tareas completas"
-    },
-    {
         "id": "tag1",
-        "type": "tag",
         "order": 1,
-        "id_father": "columnCurrent",
+        "status": "pending",
         "title": "Team Meeting",
         "description": "Discuss project updates and next steps",
         "endtime": "2024-03-15T10:00:00",
@@ -30,9 +14,8 @@
     },
     {
         "id": "tag2",
-        "type": "tag",
         "order": 2,
-        "id_father": "columnPending",
+        "status": "current",
         "title": "Team Meeting",
         "description": "Discuss project updates and next steps",
         "endtime": "2024-03-15T10:00:00",
@@ -44,9 +27,8 @@
     },
     {
         "id": "tag3",
-        "type": "tag",
         "order": 3,
-        "id_father": "columnCurrent",
+        "status": "pending",
         "title": "Training Session",
         "description": "Discuss project updates and next steps",
         "endtime": "2024-03-15T10:00:00",
@@ -58,9 +40,8 @@
     },
     {
         "id": "tag4",
-        "type": "tag",
         "order": 4,
-        "id_father": "columnPending",
+        "status": "current",
         "title": "Team Meeting",
         "description": "Discuss project updates and next steps",
         "endtime": "2024-03-15T10:00:00",
@@ -72,9 +53,8 @@
     },
     {
         "id": "tag5",
-        "type": "tag",
         "order": 1,
-        "id_father": "columnComplete",
+        "status": "complete",
         "title": "Client Presentation",
         "description": "Present new product features to the client",
         "endtime": "2024-03-20T15:30:00",
@@ -87,9 +67,8 @@
     },
     {
         "id": "tag6",
-        "type": "tag",
         "order": 2,
-        "id_father": "columnPending",
+        "status": "complete",
         "title": "Training Session",
         "description": "Training session for new employees",
         "endtime": "2024-03-25T09:00:00",
@@ -101,9 +80,8 @@
     },
     {
         "id": "tag7",
-        "type": "tag",
         "order": 1,
-        "id_father": "columnCurrent",
+        "status": "complete",
         "title": "Project Review",
         "description": "Review progress and address any issues",
         "endtime": "2024-03-18T11:00:00",

@@ -51,12 +51,6 @@
             background: #cdcdcd;
         }
 
-        .addColumn {
-            position: fixed;
-            right: 1rem;
-            bottom: 1rem;
-        }
-
         .columns {
             margin-top: 40px;
             display: flex;
@@ -176,13 +170,40 @@
     <header></header>
     <main>
         <div id="columns" class="columns">
+            <div id="columnPending" class="col columnPending">
+                <div class="header">
+                    <h2>Tareas pendientes:</h2>
+                </div>
+                <div id="currentTags" class="tags">
+                </div>
+                <div class="footer">
+                    <a href="/addTask.html"><span class="x rotate45 icon"></span></a>
+                </div>
+            </div>
+            <div id="columnCurrent" class="col">
+                <div class="header">
+                    <h2>Tareas actuales:</h2>
+                </div>
+                <div id="pendingTags" class="tags">
+                </div>
+                <div class="footer">
+                    <a href="/addTask.html"><span class="x rotate45 icon"></span></a>
+                </div>
+            </div>
+            <div id="columnComplete" class="col">
+                <div class="header">
+                    <h2>Tareas completas:</h2>
+                </div>
+                <div id="completeTags" class="tags">
+                </div>
+                <div class="footer">
+                    <a href="/addTask.html"><span class="x rotate45 icon"></span></a>
+                </div>
+            </div>
         </div>
-        <button id="addColumn" class="buttonStyle addColumn">
-            <span class="x rotate45 icon"></span>
-        </button>
         <div id="taskDetailModal"></div>
     </main>
-    <script type="module" src="columns.js"></script>
+    <script type="module" src="interface3/js/columns.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
