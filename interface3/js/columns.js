@@ -4,48 +4,47 @@ function dynamicColumn() {
     fetch('data.json')
         .then(response => response.json())
         .then(data => {
-            // Obtener el div con id "columns"
-            let columnPending = document.getElementById('pendingTags');
-            let columnCurrent = document.getElementById('currentTags');
-            let columnComplete = document.getElementById('completeTags');
+            let columnPending = document.getElementById('pendingTasks');
+            let columnCurrent = document.getElementById('currentTasks');
+            let columnComplete = document.getElementById('completeTasks');
             data.forEach(objeto => {
                 if (objeto.status == "pending") {
-                    createTag(columnPending);
+                    createTask(columnPending);
                 } else if (objeto.status == "current") {
-                    createTag(columnCurrent);
+                    createTask(columnCurrent);
                 } else if (objeto.status == "complete") {
-                    createTag(columnComplete);
+                    createTask(columnComplete);
                 }
-                function createTag(column) {
-                    var newTag = document.createElement('div');
-                    newTag.setAttribute('id', objeto.id);
-                    newTag.classList.add('tag', objeto.status);
-                    var TagHeader = document.createElement('div');
-                    TagHeader.classList.add('header', 'tagHeader');
-                    var tagTitle = document.createElement('h3');
-                    tagTitle.textContent = objeto.title;
+                function createTask(column) {
+                    var newTask = document.createElement('div');
+                    newTask.setAttribute('id', objeto.id);
+                    newTask.classList.add('task', objeto.status);
+                    var TaskHeader = document.createElement('div');
+                    TaskHeader.classList.add('header', 'taskHeader');
+                    var TaskTitle = document.createElement('h3');
+                    TaskTitle.textContent = objeto.title;
                     var controls = document.createElement('div');
-                    var tagEditIcon = document.createElement('span');
-                    tagEditIcon.classList.add('edit', 'icon');
-                    var tagMoveIcon = document.createElement('span');
-                    tagMoveIcon.classList.add('move', 'icon');
-                    controls.appendChild(tagEditIcon);
-                    controls.appendChild(tagMoveIcon);
-                    TagHeader.appendChild(tagTitle);
-                    TagHeader.appendChild(controls);
-                    newTag.appendChild(TagHeader);
-                    var ulTag = document.createElement('ul');
+                    var TaskEditIcon = document.createElement('span');
+                    TaskEditIcon.classList.add('edit', 'icon');
+                    var TaskMoveIcon = document.createElement('span');
+                    TaskMoveIcon.classList.add('move', 'icon');
+                    controls.appendChild(TaskEditIcon);
+                    controls.appendChild(TaskMoveIcon);
+                    TaskHeader.appendChild(TaskTitle);
+                    TaskHeader.appendChild(controls);
+                    newTask.appendChild(TaskHeader);
+                    var ulTask = document.createElement('ul');
                     var liDescription = document.createElement('li');
                     liDescription.textContent = "Descripcion: " + objeto.description;
                     var liEndtime = document.createElement('li');
                     liEndtime.textContent = "Fecha: " + objeto.endtime;
                     var liParticipants = document.createElement('li');
                     liParticipants.textContent = "Participantes: " + objeto.participants;
-                    ulTag.appendChild(liDescription);
-                    ulTag.appendChild(liEndtime);
-                    ulTag.appendChild(liParticipants);
-                    newTag.appendChild(ulTag);
-                    column.appendChild(newTag);
+                    ulTask.appendChild(liDescription);
+                    ulTask.appendChild(liEndtime);
+                    ulTask.appendChild(liParticipants);
+                    newTask.appendChild(ulTask);
+                    column.appendChild(newTask);
                 }
             });
             logTagId();
@@ -63,13 +62,13 @@ function logTagId() {
     const editIcons = document.querySelectorAll('.edit.icon');
     moveIcons.forEach(icon => {
         icon.addEventListener('mousedown', () => {
-            const parentTag = icon.closest('.tag');
+            const parentTag = icon.closest('.task');
             parentTag.setAttribute('draggable', 'true');
         });
     });
     editIcons.forEach(icon => {
         icon.addEventListener('click', () => {
-            const parentTag = icon.closest('.tag');
+            const parentTag = icon.closest('.task');
             const parentID = parentTag.id;
             openPopUp(parentID);
         });
@@ -94,8 +93,8 @@ function handleDragEnd(e) {
 function handleDragOver(e) {
     const beingDragged = document.querySelector(".dragging");
     const dragOver = e.target;
-    if (dragOver.matches('.tag') || dragOver.matches('.tagEmpty')) {
-        if (beingDragged.matches('.tag') && !isDescendant(beingDragged, dragOver)) {
+    if (dragOver.matches('.task') || dragOver.matches('.taskEmpty')) {
+        if (beingDragged.matches('.task') && !isDescendant(beingDragged, dragOver)) {
             allowDrop(e);
             uptadeColumns();
         }
@@ -141,15 +140,15 @@ function whichChild(el) {
 }
 
 function uptadeColumns() {
-    const tags = document.querySelectorAll('.tags');
+    const tags = document.querySelectorAll('.tasks');
 
     tags.forEach(tag => {
-        const tagEmpty = tag.querySelector('.tagEmpty');
-        const hasTag = tag.querySelector('.tag');
+        const tagEmpty = tag.querySelector('.taskEmpty');
+        const hasTag = tag.querySelector('.task');
 
         if (!hasTag && !tagEmpty) {
             const newTager = document.createElement('div');
-            newTager.classList.add('tagEmpty');
+            newTager.classList.add('taskEmpty');
             newTager.textContent = "Columna vacía, añade o arrastra una tarjeta hasta aquí.";
             tag.appendChild(newTager);
         } else if (hasTag && tagEmpty) {

@@ -121,7 +121,7 @@
             flex-direction: row-reverse;
         }
 
-        .tags {
+        .tasks {
             max-height: 70vh;
             margin: 15px 0;
             overflow: auto;
@@ -132,30 +132,30 @@
             opacity: 0.5;
         }
 
-        .tag,
-        .tagEmpty {
+        .task,
+        .taskEmpty {
             width: -webkit-fill-available;
             margin-bottom: 15px;
             border-radius: 5px;
             padding: 10px;
         }
 
-        #columnComplete .tag {
+        #columnComplete .task {
             box-shadow: 5px 5px 7px 0px #bbbbbb, inset -4px -4px 13px 4px #ffafaf;
             background-color: rgb(255 208 208);
         }
 
-        #columnCurrent .tag {
+        #columnCurrent .task {
             box-shadow: 5px 5px 7px 0px #bbbbbb,  inset -4px -4px 13px 4px #b7ffb7;
             background-color: rgb(220 255 210);
         }
 
-        #columnPending .tag {
+        #columnPending .task {
             box-shadow: 5px 5px 7px 0px #bbbbbb,  inset -4px -4px 13px 4px #a1d3ff;
             background-color: rgb(206 235 255);
         }
 
-        .tagEmpty {
+        .taskEmpty {
             background-color: rgb(249 249 249);
             box-shadow: 5px 5px 7px 0px #bbbbbb,  inset -4px -4px 13px 4px #e3e3e3;
         }
@@ -174,7 +174,7 @@
                 <div class="header">
                     <h2>Tareas pendientes:</h2>
                 </div>
-                <div id="currentTags" class="tags">
+                <div id="currentTasks" class="tasks">
                 </div>
                 <div class="footer">
                     <a href="/addTask.html"><span class="x rotate45 icon"></span></a>
@@ -184,7 +184,7 @@
                 <div class="header">
                     <h2>Tareas actuales:</h2>
                 </div>
-                <div id="pendingTags" class="tags">
+                <div id="pendingTasks" class="tasks">
                 </div>
                 <div class="footer">
                     <a href="/addTask.html"><span class="x rotate45 icon"></span></a>
@@ -194,7 +194,7 @@
                 <div class="header">
                     <h2>Tareas completas:</h2>
                 </div>
-                <div id="completeTags" class="tags">
+                <div id="completeTasks" class="tasks">
                 </div>
                 <div class="footer">
                     <a href="/addTask.html"><span class="x rotate45 icon"></span></a>
