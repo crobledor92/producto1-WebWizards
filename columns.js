@@ -1,83 +1,89 @@
-fetch('data.json')
-    .then(response => response.json())
-    .then(data => {
-        // Obtener el div con id "columns"
-        var columnsDiv = document.getElementById('columns');
-        data.forEach(objeto => {
-            // Verificar el tipo de objeto
-            if (objeto.type === 'column') {
-                // Crear columna
-                var newColumn = document.createElement('div');
-                newColumn.setAttribute('id', objeto.id);
-                newColumn.classList.add('col');
-                // Header
-                var headerDiv = document.createElement('div');
-                headerDiv.classList.add('header');
-                var headerTitle = document.createElement('h2');
-                headerTitle.textContent = objeto.title;
-                var headerCloseIcon = document.createElement('span');
-                headerCloseIcon.classList.add('x', 'icon');
-                headerDiv.appendChild(headerTitle);
-                headerDiv.appendChild(headerCloseIcon);
-                // Tags
-                var tagsDiv = document.createElement('div');
-                tagsDiv.classList.add('tags');
-                // Agregar los tags relacionados con esta columna
-                data.forEach(tag => {
-                    if (tag.type === 'tag' && tag.id_father === objeto.id) {
-                        var newTag = document.createElement('div');
-                        newTag.setAttribute('id', tag.id);
-                        newTag.classList.add('tag');
-                        var TagHeader = document.createElement('div');
-                        TagHeader.classList.add('header', 'tagHeader');
-                        var tagTitle = document.createElement('h3');
-                        tagTitle.textContent = tag.title;
-                        var controls = document.createElement('div');
-                        var tagEditIcon = document.createElement('span');
-                        tagEditIcon.classList.add('edit', 'icon');
-                        var tagMoveIcon = document.createElement('span');
-                        tagMoveIcon.classList.add('move', 'icon');
-                        controls.appendChild(tagEditIcon);
-                        controls.appendChild(tagMoveIcon);
-                        TagHeader.appendChild(tagTitle);
-                        TagHeader.appendChild(controls);
-                        newTag.appendChild(TagHeader);
-                        var ulTag = document.createElement('ul');
-                        var liDescription = document.createElement('li');
-                        liDescription.textContent = "Descripcion: " + tag.description;
-                        var liEndtime = document.createElement('li');
-                        liEndtime.textContent = "Fecha: " + tag.endtime;
-                        var liParticipants = document.createElement('li');
-                        liParticipants.textContent = "Participantes: " + tag.participants;
-                        ulTag.appendChild(liDescription);
-                        ulTag.appendChild(liEndtime);
-                        ulTag.appendChild(liParticipants);
-                        newTag.appendChild(ulTag);
-                        tagsDiv.appendChild(newTag);
-                    }
-                });
-                // Footer
-                var footerDiv = document.createElement('div');
-                footerDiv.classList.add('footer');
-                var addTaskLink = document.createElement('a');
-                addTaskLink.href = "/addTask.html";
-                var footerCloseIcon = document.createElement('span');
-                footerCloseIcon.classList.add('x', 'rotate45', 'icon');
-                addTaskLink.appendChild(footerCloseIcon);
-                footerDiv.appendChild(addTaskLink);
-                // Añadir elementos a la columna
-                newColumn.appendChild(headerDiv);
-                newColumn.appendChild(tagsDiv);
-                newColumn.appendChild(footerDiv);
-                // Agregar la columna al div con id "columns"
-                columnsDiv.appendChild(newColumn);
-            }
+import { openPopUp } from "./openPopUp.js";
+
+function dynamicColumn() {
+    fetch('data.json')
+        .then(response => response.json())
+        .then(data => {
+            // Obtener el div con id "columns"
+            var columnsDiv = document.getElementById('columns');
+            data.forEach(objeto => {
+                // Verificar el tipo de objeto
+                if (objeto.type === 'column') {
+                    // Crear columna
+                    var newColumn = document.createElement('div');
+                    newColumn.setAttribute('id', objeto.id);
+                    newColumn.classList.add('col');
+                    // Header
+                    var headerDiv = document.createElement('div');
+                    headerDiv.classList.add('header');
+                    var headerTitle = document.createElement('h2');
+                    headerTitle.textContent = objeto.title;
+                    var headerCloseIcon = document.createElement('span');
+                    headerCloseIcon.classList.add('x', 'icon');
+                    headerDiv.appendChild(headerTitle);
+                    headerDiv.appendChild(headerCloseIcon);
+                    // Tags
+                    var tagsDiv = document.createElement('div');
+                    tagsDiv.classList.add('tags');
+                    // Agregar los tags relacionados con esta columna
+                    data.forEach(tag => {
+                        if (tag.type === 'tag' && tag.id_father === objeto.id) {
+                            var newTag = document.createElement('div');
+                            newTag.setAttribute('id', tag.id);
+                            newTag.classList.add('tag', tag.status);
+
+                            var TagHeader = document.createElement('div');
+                            TagHeader.classList.add('header', 'tagHeader');
+                            var tagTitle = document.createElement('h3');
+                            tagTitle.textContent = tag.title;
+                            var controls = document.createElement('div');
+                            var tagEditIcon = document.createElement('span');
+                            tagEditIcon.classList.add('edit', 'icon');
+                            var tagMoveIcon = document.createElement('span');
+                            tagMoveIcon.classList.add('move', 'icon');
+                            controls.appendChild(tagEditIcon);
+                            controls.appendChild(tagMoveIcon);
+                            TagHeader.appendChild(tagTitle);
+                            TagHeader.appendChild(controls);
+                            newTag.appendChild(TagHeader);
+                            var ulTag = document.createElement('ul');
+                            var liDescription = document.createElement('li');
+                            liDescription.textContent = "Descripcion: " + tag.description;
+                            var liEndtime = document.createElement('li');
+                            liEndtime.textContent = "Fecha: " + tag.endtime;
+                            var liParticipants = document.createElement('li');
+                            liParticipants.textContent = "Participantes: " + tag.participants;
+                            ulTag.appendChild(liDescription);
+                            ulTag.appendChild(liEndtime);
+                            ulTag.appendChild(liParticipants);
+                            newTag.appendChild(ulTag);
+                            tagsDiv.appendChild(newTag);
+                        }
+                    });
+                    // Footer
+                    var footerDiv = document.createElement('div');
+                    footerDiv.classList.add('footer');
+                    var addTaskLink = document.createElement('a');
+                    addTaskLink.href = "/addTask.html";
+                    var footerCloseIcon = document.createElement('span');
+                    footerCloseIcon.classList.add('x', 'rotate45', 'icon');
+                    addTaskLink.appendChild(footerCloseIcon);
+                    footerDiv.appendChild(addTaskLink);
+                    // Añadir elementos a la columna
+                    newColumn.appendChild(headerDiv);
+                    newColumn.appendChild(tagsDiv);
+                    newColumn.appendChild(footerDiv);
+                    // Agregar la columna al div con id "columns"
+                    columnsDiv.appendChild(newColumn);
+                }
+            });
+            logTagId()
+        })
+        .catch(error => {
+            console.error('Error al leer el archivo:', error);
         });
-        logTagId()
-    })
-    .catch(error => {
-        console.error('Error al leer el archivo:', error);
-    });
+}
+dynamicColumn();
 
 
 function logTagId() {
@@ -93,7 +99,7 @@ function logTagId() {
         icon.addEventListener('click', () => {
             const parentTag = icon.closest('.tag');
             const parentID = parentTag.id;
-            location.replace("taskDetails.html?id=" + parentID)
+            openPopUp(parentID);
         });
     });
 }

@@ -1,97 +1,116 @@
 [
     {
-        "id": "column1",
+        "id": "columnPending",
         "type": "column",
-        "order": 1,
-        "title": "column 1"
+        "title": "Tareas pendientes"
+    },
+    {
+        "id": "columnCurrent",
+        "type": "column",
+        "title": "Tareas en curso"
+    },
+    {
+        "id": "columnComplete",
+        "type": "column",
+        "title": "Tareas completas"
     },
     {
         "id": "tag1",
         "type": "tag",
         "order": 1,
-        "id_father": "column2",
+        "id_father": "columnCurrent",
         "title": "Team Meeting",
         "description": "Discuss project updates and next steps",
         "endtime": "2024-03-15T10:00:00",
-        "participants": ["John", "Alice", "David"],
-        "status": true
+        "participants": [
+            "John",
+            "Alice",
+            "David"
+        ]
     },
     {
         "id": "tag2",
         "type": "tag",
         "order": 2,
-        "id_father": "column1",
+        "id_father": "columnPending",
         "title": "Team Meeting",
         "description": "Discuss project updates and next steps",
         "endtime": "2024-03-15T10:00:00",
-        "participants": ["John", "Alice", "David"],
-        "status": true
+        "participants": [
+            "John",
+            "Alice",
+            "David"
+        ]
     },
     {
         "id": "tag3",
         "type": "tag",
         "order": 3,
-        "id_father": "column1",
+        "id_father": "columnCurrent",
         "title": "Training Session",
         "description": "Discuss project updates and next steps",
         "endtime": "2024-03-15T10:00:00",
-        "participants": ["John", "Alice", "David"],
-        "status": true
+        "participants": [
+            "John",
+            "Alice",
+            "David"
+        ]
     },
     {
         "id": "tag4",
         "type": "tag",
         "order": 4,
-        "id_father": "column1",
+        "id_father": "columnPending",
         "title": "Team Meeting",
         "description": "Discuss project updates and next steps",
         "endtime": "2024-03-15T10:00:00",
-        "participants": ["John", "Alice", "David"],
-        "status": true
-    },
-    {
-        "id": "column2",
-        "type": "column",
-        "order": 2,
-        "title": "column 2"
+        "participants": [
+            "John",
+            "Alice",
+            "David"
+        ]
     },
     {
         "id": "tag5",
         "type": "tag",
         "order": 1,
-        "id_father": "column2",
+        "id_father": "columnComplete",
         "title": "Client Presentation",
         "description": "Present new product features to the client",
         "endtime": "2024-03-20T15:30:00",
-        "participants": ["Emily", "Michael", "Sarah", "Tom"],
-        "status": true
+        "participants": [
+            "Emily",
+            "Michael",
+            "Sarah",
+            "Tom"
+        ]
     },
     {
         "id": "tag6",
         "type": "tag",
         "order": 2,
-        "id_father": "column2",
+        "id_father": "columnPending",
         "title": "Training Session",
         "description": "Training session for new employees",
         "endtime": "2024-03-25T09:00:00",
-        "participants": ["Lucas", "Sophia", "Oliver"],
-        "status": true
-    },
-    {
-        "id": "column3",
-        "type": "column",
-        "order": 3,
-        "title": "column 3"
+        "participants": [
+            "Lucas",
+            "Sophia",
+            "Oliver"
+        ]
     },
     {
         "id": "tag7",
         "type": "tag",
         "order": 1,
-        "id_father": "column3",
+        "id_father": "columnCurrent",
         "title": "Project Review",
         "description": "Review progress and address any issues",
         "endtime": "2024-03-18T11:00:00",
-        "participants": ["Ella", "Jack", "Ava"],
-        "status": true
+        "participants": [
+            "Ella",
+            "Jack",
+            "Ava"
+        ]
     }
 ]
