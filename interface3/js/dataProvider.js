@@ -1,4 +1,4 @@
-export function dataProvider(){
+function dataProvider(){
     if (!localStorage.getItem("tasks")){
         fetch('data.json')
             .then(res => res.json())
@@ -7,3 +7,5 @@ export function dataProvider(){
             })
     }
 }
+
+dataProvider();

@@ -1,105 +1,49 @@
 import { openPopUp } from "./openPopUp.js";
-import { dataProvider } from "./dataProvider.js";
-
-dataProvider();
 
 function dynamicColumn() {
-    fetch('data.json')
-        .then(response => response.json())
-        .then(data => {
-            let columnPending = document.getElementById('pendingTasks');
-            let columnCurrent = document.getElementById('currentTasks');
-            let columnComplete = document.getElementById('completeTasks');
-            data.forEach(objeto => {
-                if (objeto.status == "pending") {
-                    createTask(columnPending);
-                } else if (objeto.status == "current") {
-                    createTask(columnCurrent);
-                } else if (objeto.status == "complete") {
-                    createTask(columnComplete);
-                }
-                function createTask(column) {
-                    var newTask = document.createElement('div');
-                    newTask.setAttribute('id', objeto.id);
-                    newTask.classList.add('task', objeto.status);
-                    var TaskHeader = document.createElement('div');
-                    TaskHeader.classList.add('header', 'taskHeader');
-                    var TaskTitle = document.createElement('h3');
-                    TaskTitle.textContent = objeto.title;
-                    var controls = document.createElement('div');
-                    var TaskEditIcon = document.createElement('span');
-                    TaskEditIcon.classList.add('edit', 'icon');
-                    var TaskMoveIcon = document.createElement('span');
-                    TaskMoveIcon.classList.add('move', 'icon');
-                    controls.appendChild(TaskEditIcon);
-                    controls.appendChild(TaskMoveIcon);
-                    TaskHeader.appendChild(TaskTitle);
-                    TaskHeader.appendChild(controls);
-                    newTask.appendChild(TaskHeader);
-                    var ulTask = document.createElement('ul');
-                    var liDescription = document.createElement('li');
-                    liDescription.textContent = "Descripcion: " + objeto.description;
-                    var liEndtime = document.createElement('li');
-                    liEndtime.textContent = "Fecha: " + objeto.endtime;
-                    var liParticipants = document.createElement('li');
-                    liParticipants.textContent = "Participantes: " + objeto.participants;
-                    ulTask.appendChild(liDescription);
-                    ulTask.appendChild(liEndtime);
-                    ulTask.appendChild(liParticipants);
-                    newTask.appendChild(ulTask);
-                    column.appendChild(newTask);
-                }
-            });
-            logTagId();
-        })
-        .catch(error => {
-            console.error('Error al leer el archivo:', error);
-        });
-    
-    // Obtener el div con id "columns"
-    let columnPending = document.getElementById('pendingTags');
-    let columnCurrent = document.getElementById('currentTags');
-    let columnComplete = document.getElementById('completeTags');
     const tasks = JSON.parse(localStorage.getItem("tasks"));
     console.log("Estas son las tareas:", tasks)
+    let columnPending = document.getElementById('pendingTasks');
+    let columnCurrent = document.getElementById('currentTasks');
+    let columnComplete = document.getElementById('completeTasks');
     tasks.forEach(objeto => {
         if (objeto.status == "pending") {
-            createTag(columnPending);
+            createTask(columnPending);
         } else if (objeto.status == "current") {
-            createTag(columnCurrent);
+            createTask(columnCurrent);
         } else if (objeto.status == "complete") {
-            createTag(columnComplete);
+            createTask(columnComplete);
         }
-        function createTag(column) {
-            var newTag = document.createElement('div');
-            newTag.setAttribute('id', objeto.id);
-            newTag.classList.add('tag', objeto.status);
-            var TagHeader = document.createElement('div');
-            TagHeader.classList.add('header', 'tagHeader');
-            var tagTitle = document.createElement('h3');
-            tagTitle.textContent = objeto.title;
+        function createTask(column) {
+            var newTask = document.createElement('div');
+            newTask.setAttribute('id', objeto.id);
+            newTask.classList.add('task', objeto.status);
+            var TaskHeader = document.createElement('div');
+            TaskHeader.classList.add('header', 'taskHeader');
+            var TaskTitle = document.createElement('h3');
+            TaskTitle.textContent = objeto.title;
             var controls = document.createElement('div');
-            var tagEditIcon = document.createElement('span');
-            tagEditIcon.classList.add('edit', 'icon');
-            var tagMoveIcon = document.createElement('span');
-            tagMoveIcon.classList.add('move', 'icon');
-            controls.appendChild(tagEditIcon);
-            controls.appendChild(tagMoveIcon);
-            TagHeader.appendChild(tagTitle);
-            TagHeader.appendChild(controls);
-            newTag.appendChild(TagHeader);
-            var ulTag = document.createElement('ul');
+            var TaskEditIcon = document.createElement('span');
+            TaskEditIcon.classList.add('edit', 'icon');
+            var TaskMoveIcon = document.createElement('span');
+            TaskMoveIcon.classList.add('move', 'icon');
+            controls.appendChild(TaskEditIcon);
+            controls.appendChild(TaskMoveIcon);
+            TaskHeader.appendChild(TaskTitle);
+            TaskHeader.appendChild(controls);
+            newTask.appendChild(TaskHeader);
+            var ulTask = document.createElement('ul');
             var liDescription = document.createElement('li');
             liDescription.textContent = "Descripcion: " + objeto.description;
             var liEndtime = document.createElement('li');
             liEndtime.textContent = "Fecha: " + objeto.endtime;
             var liParticipants = document.createElement('li');
             liParticipants.textContent = "Participantes: " + objeto.participants;
-            ulTag.appendChild(liDescription);
-            ulTag.appendChild(liEndtime);
-            ulTag.appendChild(liParticipants);
-            newTag.appendChild(ulTag);
-            column.appendChild(newTag);
+            ulTask.appendChild(liDescription);
+            ulTask.appendChild(liEndtime);
+            ulTask.appendChild(liParticipants);
+            newTask.appendChild(ulTask);
+            column.appendChild(newTask);
         }
     });
     logTagId();
