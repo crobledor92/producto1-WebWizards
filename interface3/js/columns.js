@@ -35,13 +35,13 @@ function dynamicColumn() {
             var ulTask = document.createElement('ul');
             var liDescription = document.createElement('li');
             liDescription.textContent = "Descripcion: " + objeto.description;
-            var liEndtime = document.createElement('li');
-            liEndtime.textContent = "Fecha: " + objeto.endtime;
-            var liParticipants = document.createElement('li');
-            liParticipants.textContent = "Participantes: " + objeto.participants;
+            var liendTime = document.createElement('li');
+            liendTime.textContent = "Fecha: " + objeto.endTime;
+            var limembers = document.createElement('li');
+            limembers.textContent = "Participantes: " + objeto.members;
             ulTask.appendChild(liDescription);
-            ulTask.appendChild(liEndtime);
-            ulTask.appendChild(liParticipants);
+            ulTask.appendChild(liendTime);
+            ulTask.appendChild(limembers);
             newTask.appendChild(ulTask);
             column.appendChild(newTask);
         }

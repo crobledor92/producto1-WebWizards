@@ -5,7 +5,7 @@ export function openPopUp(getID) {
         description: "asdd",
         status: "ToDo",
         endTime: "2024-03-25T09:00:00",
-        participants: "Hola",
+        members: "Hola",
     };
     fetch('data.json')
         .then(response => response.json())
@@ -51,8 +51,8 @@ export function openPopUp(getID) {
                     var taskInfo = document.createElement("div");
                     taskInfo.classList.add("task-info");
                     var descriptionDiv = createInputDiv("Descripción:", "description", "text", item.description);
-                    var dateDiv = createInputDiv("Fecha limite:", "date", "datetime-local", item.endtime);
-                    var participantsDiv = createInputDiv("Participantes:", "participants", "text", item.participants);
+                    var dateDiv = createInputDiv("Fecha limite:", "date", "datetime-local", item.endTime);
+                    var membersDiv = createInputDiv("Participantes:", "members", "text", item.members);
                     function createInputDiv(labelText, id, inputType, inputValue) {
                         var div = document.createElement("div");
                         div.classList.add("inline");
@@ -69,7 +69,7 @@ export function openPopUp(getID) {
                     // Agregar los elementos al documento
                     taskInfo.appendChild(descriptionDiv);
                     taskInfo.appendChild(dateDiv);
-                    taskInfo.appendChild(participantsDiv);
+                    taskInfo.appendChild(membersDiv);
                     modalBodyDiv.appendChild(title);
                     modalBodyDiv.appendChild(taskInfo);
                     // Crear el pie del modal

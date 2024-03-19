@@ -11,8 +11,8 @@ fetch('data.json')
                 var taskSubtitle = document.createElement("h2");
                 taskSubtitle.textContent = "Tarea:";
                 var descriptionDiv = createInputDiv("Descripción:", "description", "text", Object.description);
-                var dateDiv = createInputDiv("Fecha limite:", "date", "datetime-local", Object.endtime);
-                var participantsDiv = createInputDiv("Participantes:", "participants", "text", Object.participants);
+                var dateDiv = createInputDiv("Fecha limite:", "date", "datetime-local", Object.endTime);
+                var membersDiv = createInputDiv("Participantes:", "members", "text", Object.members);
                 function createInputDiv(labelText, id, inputType, inputValue) {
                     var div = document.createElement("div");
                     div.classList.add("inline");
@@ -30,7 +30,7 @@ fetch('data.json')
                 taskInfo.appendChild(taskSubtitle);
                 taskInfo.appendChild(descriptionDiv);
                 taskInfo.appendChild(dateDiv);
-                taskInfo.appendChild(participantsDiv);
+                taskInfo.appendChild(membersDiv);
                 document.getElementById('contenido').appendChild(title);
                 document.getElementById('contenido').appendChild(taskInfo);
             }
