@@ -6,5 +6,4 @@ export function dataProvider(){
                 localStorage.setItem("tasks", JSON.stringify(tasks))
             })
     }
-
 }

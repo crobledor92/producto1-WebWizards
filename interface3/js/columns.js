@@ -1,58 +1,57 @@
 import { openPopUp } from "./openPopUp.js";
+import { dataProvider } from "./dataProvider.js";
+
+dataProvider();
 
 function dynamicColumn() {
-    fetch('data.json')
-        .then(response => response.json())
-        .then(data => {
-            // Obtener el div con id "columns"
-            let columnPending = document.getElementById('pendingTags');
-            let columnCurrent = document.getElementById('currentTags');
-            let columnComplete = document.getElementById('completeTags');
-            data.forEach(objeto => {
-                if (objeto.status == "pending") {
-                    createTag(columnPending);
-                } else if (objeto.status == "current") {
-                    createTag(columnCurrent);
-                } else if (objeto.status == "complete") {
-                    createTag(columnComplete);
-                }
-                function createTag(column) {
-                    var newTag = document.createElement('div');
-                    newTag.setAttribute('id', objeto.id);
-                    newTag.classList.add('tag', objeto.status);
-                    var TagHeader = document.createElement('div');
-                    TagHeader.classList.add('header', 'tagHeader');
-                    var tagTitle = document.createElement('h3');
-                    tagTitle.textContent = objeto.title;
-                    var controls = document.createElement('div');
-                    var tagEditIcon = document.createElement('span');
-                    tagEditIcon.classList.add('edit', 'icon');
-                    var tagMoveIcon = document.createElement('span');
-                    tagMoveIcon.classList.add('move', 'icon');
-                    controls.appendChild(tagEditIcon);
-                    controls.appendChild(tagMoveIcon);
-                    TagHeader.appendChild(tagTitle);
-                    TagHeader.appendChild(controls);
-                    newTag.appendChild(TagHeader);
-                    var ulTag = document.createElement('ul');
-                    var liDescription = document.createElement('li');
-                    liDescription.textContent = "Descripcion: " + objeto.description;
-                    var liEndtime = document.createElement('li');
-                    liEndtime.textContent = "Fecha: " + objeto.endtime;
-                    var liParticipants = document.createElement('li');
-                    liParticipants.textContent = "Participantes: " + objeto.participants;
-                    ulTag.appendChild(liDescription);
-                    ulTag.appendChild(liEndtime);
-                    ulTag.appendChild(liParticipants);
-                    newTag.appendChild(ulTag);
-                    column.appendChild(newTag);
-                }
-            });
-            logTagId();
-        })
-        .catch(error => {
-            console.error('Error al leer el archivo:', error);
-        });
+    
+    // Obtener el div con id "columns"
+    let columnPending = document.getElementById('pendingTags');
+    let columnCurrent = document.getElementById('currentTags');
+    let columnComplete = document.getElementById('completeTags');
+    const tasks = JSON.parse(localStorage.getItem("tasks"));
+    console.log("Estas son las tareas:", tasks)
+    tasks.forEach(objeto => {
+        if (objeto.status == "pending") {
+            createTag(columnPending);
+        } else if (objeto.status == "current") {
+            createTag(columnCurrent);
+        } else if (objeto.status == "complete") {
+            createTag(columnComplete);
+        }
+        function createTag(column) {
+            var newTag = document.createElement('div');
+            newTag.setAttribute('id', objeto.id);
+            newTag.classList.add('tag', objeto.status);
+            var TagHeader = document.createElement('div');
+            TagHeader.classList.add('header', 'tagHeader');
+            var tagTitle = document.createElement('h3');
+            tagTitle.textContent = objeto.title;
+            var controls = document.createElement('div');
+            var tagEditIcon = document.createElement('span');
+            tagEditIcon.classList.add('edit', 'icon');
+            var tagMoveIcon = document.createElement('span');
+            tagMoveIcon.classList.add('move', 'icon');
+            controls.appendChild(tagEditIcon);
+            controls.appendChild(tagMoveIcon);
+            TagHeader.appendChild(tagTitle);
+            TagHeader.appendChild(controls);
+            newTag.appendChild(TagHeader);
+            var ulTag = document.createElement('ul');
+            var liDescription = document.createElement('li');
+            liDescription.textContent = "Descripcion: " + objeto.description;
+            var liEndtime = document.createElement('li');
+            liEndtime.textContent = "Fecha: " + objeto.endtime;
+            var liParticipants = document.createElement('li');
+            liParticipants.textContent = "Participantes: " + objeto.participants;
+            ulTag.appendChild(liDescription);
+            ulTag.appendChild(liEndtime);
+            ulTag.appendChild(liParticipants);
+            newTag.appendChild(ulTag);
+            column.appendChild(newTag);
+        }
+    });
+    logTagId();
 }
 
 dynamicColumn();

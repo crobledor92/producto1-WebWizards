@@ -1,7 +1,7 @@
 export function addTask(event) {
     event.preventDefault();
     const taskData = {
-        id: Math.random() * 10000,
+        id: (Math.random() * 10000).toString(),
         title: event.target.elements.title.value,
         description: event.target.elements.description.value,
         endTime: event.target.elements.endTime.value,
