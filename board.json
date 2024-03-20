@@ -3,12 +3,18 @@
     "id": "1",
     "title": "Frontend WebWizards",
     "description": "WebWizards frontend workflow board",
-    "image": "undefined"
+    "image": "/assets/frontend.png"
   },
   {
     "id": "2",
-    "title": "WebWizards",
+    "title": "Backend WebWizards",
     "description": "WebWizards Backend workflow board",
-    "image": "undefined"
+    "image": "/assets/backend.png"
+  },
+  {
+    "id": "3",
+    "title": "Testers Webwizards ",
+    "description": "WebWizards testing workflow board",
+    "image": ""
   }
 ]
