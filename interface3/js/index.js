@@ -1,8 +1,10 @@
-import { addHeaderAndFooter } from "../../components/index.js";
+import { addFooter } from "../../components/footer/index.js";
+import { addHeader } from "../../components/header/index.js";
 import { dynamicColumn } from "./getColumns.js";
 
-document.addEventListener('DOMContentLoaded', () => {
-    addHeaderAndFooter();
+document.addEventListener('DOMContentLoaded', async () => {
+    await addHeader();
+    addFooter();
 })
 
 dynamicColumn();

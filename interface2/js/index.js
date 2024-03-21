@@ -3,7 +3,7 @@ import { addHeader } from "../../components/header/index.js";
 import { addBoard } from "./addBoard.js";
 
 document.addEventListener('DOMContentLoaded', async () => {
-    addHeader();
+    await addHeader();
     addFooter();
 
     const form = document.getElementById("addBoardForm");
