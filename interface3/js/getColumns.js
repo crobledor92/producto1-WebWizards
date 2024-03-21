@@ -1,6 +1,6 @@
 import { editPopUp } from "./editPopUp.js";
 import { deletePopUp } from "./deletePopUp.js";
-import { newTaskPupUp } from "./newTaskPupUp.js";
+import { newTaskPopUp } from "./newTaskPopUp.js";
 
 export function dynamicColumn() {
 
@@ -59,9 +59,13 @@ export function dynamicColumn() {
             column.appendChild(newTask);
         }
     });
+    const newTaskIcon = document.querySelectorAll('.new.icon')
+    newTaskIcon.forEach(icon => {
+        icon.addEventListener('click', () => {
+            newTaskPopUp();
+        });
+    });
     const deleteIcon = document.querySelectorAll('.delete.icon');
-    const moveIcons = document.querySelectorAll('.move.icon');
-    const editIcons = document.querySelectorAll('.edit.icon');
     deleteIcon.forEach(icon => {
         icon.addEventListener('click', () => {
             const parentTag = icon.closest('.task');
@@ -69,6 +73,14 @@ export function dynamicColumn() {
             deletePopUp(parentID);
         });
     });
+    const moveIcons = document.querySelectorAll('.move.icon');
+    moveIcons.forEach(icon => {
+        icon.addEventListener('mousedown', () => {
+            const parentTag = icon.closest('.task');
+            parentTag.setAttribute('draggable', 'true');
+        });
+    });
+    const editIcons = document.querySelectorAll('.edit.icon');
     editIcons.forEach(icon => {
         icon.addEventListener('click', () => {
             const parentTag = icon.closest('.task');
@@ -76,12 +88,7 @@ export function dynamicColumn() {
             editPopUp(parentID);
         });
     });
-    moveIcons.forEach(icon => {
-        icon.addEventListener('mousedown', () => {
-            const parentTag = icon.closest('.task');
-            parentTag.setAttribute('draggable', 'true');
-        });
-    });
+
     const tags = document.querySelectorAll('.tasks');
     tags.forEach(tag => {
         const tagEmpty = tag.querySelector('.taskEmpty');
