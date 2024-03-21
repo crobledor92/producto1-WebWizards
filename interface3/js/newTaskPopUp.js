@@ -1,9 +1,8 @@
 import { dynamicColumn } from "./getColumns.js";
 
 export function newTaskPopUp() {
-    let taskModal = document.getElementById('taskModal');
-    taskModal.innerHTML = `
-    <div class="modal" tabindex="-1">
+    document.getElementById('taskModal').innerHTML = `
+    <div id="modal" class="modal" tabindex="-1" style="display: block;">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -11,41 +10,39 @@ export function newTaskPopUp() {
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form id="taskForm">
-                        <div class="input-form">
-                            <label for="title">Titulo</label>
-                            <input required type="text" id="newTitle" />
+                    <div class="input-form">
+                        <label for="title">Titulo</label>
+                        <input required type="text" id="newTitle" value="Titulo"/>
+                    </div>
+                    <div class="input-form">
+                        <label>Descripción</label>
+                        <textarea required type="text" id="newDescription" rows="5">Descrición de la tarea ...</textarea>
+                    </div>
+                    <div class="input-form">
+                        <label>Fecha Limite</label>
+                        <input required type="datetime-local" id="newEndTime" value="2023-01-01T10:10"/>
+                    </div>
+                    <div class="input-form">
+                        <label>Estado</label>
+                        <div class="status-input">
+                            <label>
+                                <input type="radio" name="newStatus" value="pending" checked/>
+                                Pendiente
+                            </label>
+                            <label>
+                                <input type="radio" name="newStatus" value="current" />
+                                En progreso
+                            </label>
+                            <label>
+                                <input type="radio" name="newStatus" value="complete" />
+                                Completado
+                            </label>
                         </div>
-                        <div class="input-form">
-                            <label>Descripción</label>
-                            <textarea required type="text" id="newDescription" rows="5"></textarea>
-                        </div>
-                        <div class="input-form">
-                            <label>Fecha Limite</label>
-                            <input required type="datetime-local" id="newEndTime" />
-                        </div>
-                        <div class="input-form">
-                            <label>Estado</label>
-                            <div class="status-input">
-                                <label>
-                                    <input type="radio" name="newStatus" value="pending" />
-                                    Pendiente
-                                </label>
-                                <label>
-                                    <input type="radio" name="newStatus" value="current" />
-                                    En progreso
-                                </label>
-                                <label>
-                                    <input type="radio" name="newStatus" value="complete" />
-                                    Completado
-                                </label>
-                            </div>
-                        </div>
-                        <div class="input-form">
-                            <label>Miembros</label>
-                            <input required type="text" id="newMembers" />
-                        </div>
-                    </form>
+                    </div>
+                    <div class="input-form">
+                        <label>Miembros</label>
+                        <input required type="text" id="newMembers" value="Sin nombres." />
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary closeButton" data-bs-dismiss="modal">Cerrar</button>
@@ -63,6 +60,14 @@ export function newTaskPopUp() {
     document.querySelectorAll('.btn-primary.saveButton').forEach(button => {
         button.addEventListener('click', (event) => {
             try {
+                // Obtener los datos existentes de localStorage
+                const existingTasksString = localStorage.getItem("tasks");
+                // Si no hay datos previamente guardados, inicializa existingTasks como un array vacío
+                let existingTasks = [];
+                if (existingTasksString) {
+                    existingTasks = JSON.parse(existingTasksString);
+                }
+                // Crear el nuevo objeto taskData
                 const taskData = {
                     id: (Math.random() * 10000).toString(),
                     title: document.getElementById('newTitle').value,
@@ -70,10 +75,11 @@ export function newTaskPopUp() {
                     endTime: document.getElementById('newEndTime').value,
                     status: document.querySelector('input[name="newStatus"]:checked').value,
                     members: document.getElementById('newMembers').value,
-                    broadId: new URLSearchParams(window.location.search).get('boardId'),
+                    boardId: new URLSearchParams(window.location.search).get('boardId'),
                 };
-                const existingTasks = JSON.parse(localStorage.getItem("tasks"));
+                // Agregar el nuevo objeto a existingTasks
                 existingTasks.push(taskData);
+                // Guardar existingTasks en localStorage
                 localStorage.setItem("tasks", JSON.stringify(existingTasks));
                 dynamicColumn();
             } catch (error) {
