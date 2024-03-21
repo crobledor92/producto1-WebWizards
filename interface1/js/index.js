@@ -1,9 +1,11 @@
-import { addHeaderAndFooter } from "../../components/index.js";
+import { addFooter } from "../../components/footer/index.js";
+import { addHeader } from "../../components/header/index.js";
 import { createBoards } from "./createBoards.js";
 
 document.addEventListener('DOMContentLoaded', async () => {
     //Se añade el header y footer
-    addHeaderAndFooter();
+    await addHeader();
+    addFooter();
 
     //Se crean los tableros
     await createBoards();

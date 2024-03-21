@@ -11,6 +11,7 @@ export async function createBoards() {
 
         const deleteIcon = await res.text()
         deleteIconHTML = deleteIcon
+
     } catch (err) {
         console.log(err)
     } 

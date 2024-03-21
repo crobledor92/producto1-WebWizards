@@ -1,8 +1,10 @@
-import { addHeaderAndFooter } from "../../components/index.js";
+import { addFooter } from "../../components/footer/index.js";
+import { addHeader } from "../../components/header/index.js";
 import { addBoard } from "./addBoard.js";
 
 document.addEventListener('DOMContentLoaded', async () => {
-    addHeaderAndFooter();
+    addHeader();
+    addFooter();
 
     const form = document.getElementById("addBoardForm");
     form.addEventListener('submit', (event) => {

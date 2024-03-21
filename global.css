@@ -1,3 +1,5 @@
+/* RESET ESTILOS PREDETERMINADOS */
+
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -45,7 +47,8 @@ table {
 	border-spacing: 0;
 }
 
-/* Estilos globales */
+
+/* ESTILOS GLOBALES */
 
 * {
     font-family: sans-serif;
@@ -56,12 +59,22 @@ table {
 	--red-color: #a52a2a;
 }
 
-#footer-container {
-    margin-top: auto;
-}
+
+/* HEADER */
 
 header {
     margin-bottom: 2rem;
+}
+
+.navbar {
+    padding-left: 1rem;
+}
+
+
+/* FOOTER */
+
+#footer-container {
+    margin-top: auto;
 }
 
 footer {
@@ -71,6 +84,7 @@ footer {
     color: var(--light-color);
     margin-top: 2rem;
 }
+
 
 /* ESTILOS GLOBALES PARA FORMULARIO */
 
