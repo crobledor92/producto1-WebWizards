@@ -1,4 +1,9 @@
+import { addHeaderAndFooter } from "../../components/index.js";
 import { dynamicColumn } from "./getColumns.js";
+
+document.addEventListener('DOMContentLoaded', () => {
+    addHeaderAndFooter();
+})
 
 dynamicColumn();
 

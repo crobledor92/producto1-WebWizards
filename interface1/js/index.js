@@ -1,20 +1,11 @@
+import { addHeaderAndFooter } from "../../components/index.js";
 import { createBoards } from "./createBoards.js";
 
 document.addEventListener('DOMContentLoaded', async () => {
-    fetch("components/header.html")
-        .then(res => res.text())
-        .then(html => {
-            document.getElementById('header-container').innerHTML = html;
-        })
-        .catch(error => console.error('Error loading header:', error))
-        
-    fetch("components/footer.html")
-        .then(res => res.text())
-        .then(html => {
-            document.getElementById('footer-container').innerHTML = html;
-        })
-        .catch(error => console.error('Error loading footer:', error))
+    //Se añade el header y footer
+    addHeaderAndFooter();
 
+    //Se crean los tableros
     await createBoards();
 
     // Se le da funcionalidad a los botones del modal
