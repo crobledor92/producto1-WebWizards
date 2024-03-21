@@ -24,10 +24,17 @@ export async function addHeader () {
 
             if (dropdownMenu.innerHTML.trim() !== "") {
                 console.log("se añade un divider")
-                itemHTML += '<div class="dropdown-divider"></div>'
+                itemHTML = '<div class="dropdown-divider"></div>' + itemHTML;
             }
             
-            dropdownMenu.insertAdjacentHTML('beforeend', itemHTML)
+            dropdownMenu.insertAdjacentHTML('beforeend', itemHTML);
         });
     }
+
+    const addBoardDropDownButton = `
+        <div class="dropdown-divider"></div>
+        <a id="addBoardDropDownButton" class="dropdown-item" href="addBoard.html">Crear tablero</a>
+    `
+
+    dropdownMenu.insertAdjacentHTML('beforeend', addBoardDropDownButton);
 }
