@@ -1,6 +1,6 @@
 import { dynamicColumn } from "./getColumns.js";
 
-export function openPopUp(getID) {
+export function editPopUp(getID) {
     const tasks = JSON.parse(localStorage.getItem("tasks"));
     tasks.forEach(item => {
         if (item.id == getID) {

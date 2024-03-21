@@ -32,7 +32,7 @@ export async function createBoards() {
             <div class="card-body">
                 <h5 class="card-title">${board.title}</h5>
                 <p class="card-text">${board.description}</p>
-                <a href="dashboard.html" class="btn btn-primary">Abrir</a>
+                <a href=dashboard.html?boardId=${board.id} class="btn btn-primary">Abrir</a>
             </div>
         </div>`
         )

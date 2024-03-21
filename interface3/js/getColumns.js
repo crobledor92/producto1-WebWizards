@@ -1,8 +1,13 @@
-import { openPopUp } from "./openPopUp.js";
+import { editPopUp } from "./editPopUp.js";
 import { deletePopUp } from "./deletePopUp.js";
 
 export function dynamicColumn() {
-    const tasks = JSON.parse(localStorage.getItem("tasks"));
+
+    const boardId = new URLSearchParams(window.location.search).get('boardId');
+
+    const alltasks = JSON.parse(localStorage.getItem("tasks"));
+    const tasks = alltasks.filter(task => task.boardId === boardId);
+
     let columnPending = document.getElementById('pendingTasks');
     let columnCurrent = document.getElementById('currentTasks');
     let columnComplete = document.getElementById('completeTasks');
@@ -67,7 +72,7 @@ export function dynamicColumn() {
         icon.addEventListener('click', () => {
             const parentTag = icon.closest('.task');
             const parentID = parentTag.id;
-            openPopUp(parentID);
+            editPopUp(parentID);
         });
     });
     moveIcons.forEach(icon => {

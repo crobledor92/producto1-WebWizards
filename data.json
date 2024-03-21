@@ -10,7 +10,8 @@
             "John",
             "Alice",
             "David"
-        ]
+        ],
+        "boardId": "1"
     },
     {
         "id": "tag2",
@@ -23,7 +24,8 @@
             "John",
             "Alice",
             "David"
-        ]
+        ],
+        "boardId": "1"
     },
     {
         "id": "tag3",
@@ -36,7 +38,8 @@
             "John",
             "Alice",
             "David"
-        ]
+        ],
+        "boardId": "1"
     },
     {
         "id": "tag4",
@@ -49,7 +52,8 @@
             "John",
             "Alice",
             "David"
-        ]
+        ],
+        "boardId": "1"
     },
     {
         "id": "tag5",
@@ -63,7 +67,8 @@
             "Michael",
             "Sarah",
             "Tom"
-        ]
+        ],
+        "boardId": "1"
     },
     {
         "id": "tag6",
@@ -76,7 +81,8 @@
             "Lucas",
             "Sophia",
             "Oliver"
-        ]
+        ],
+        "boardId": "2"
     },
     {
         "id": "tag7",
@@ -89,6 +95,7 @@
             "Ella",
             "Jack",
             "Ava"
-        ]
+        ],
+        "boardId": "2"
     }
 ]
