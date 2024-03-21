@@ -14,17 +14,18 @@ export async function addHeader () {
     }
 
     const dropdownMenu = document.querySelector('.dropdown-menu')
-
-    console.log("drop down !!!!", dropdownMenu)
     
     const boards = JSON.parse(localStorage.getItem('boards'))
     
     if(boards && boards.length > 0) {
         boards.forEach(board => {
             
-            const itemHTML = `<a class="dropdown-item" href="dashboard.html?boardId=${board.id}">${board.title}</a>`;
+            let itemHTML = `<a class="dropdown-item" href="dashboard.html?boardId=${board.id}">${board.title}</a>`;
 
-            console.log(itemHTML)
+            if (dropdownMenu.innerHTML.trim() !== "") {
+                console.log("se añade un divider")
+                itemHTML += '<div class="dropdown-divider"></div>'
+            }
             
             dropdownMenu.insertAdjacentHTML('beforeend', itemHTML)
         });
