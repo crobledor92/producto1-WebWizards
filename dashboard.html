@@ -85,6 +85,11 @@
             border-bottom: 1px solid;
         }
 
+        .col .controls {
+            display: flex;
+            gap: 5px;
+        }
+
         .icon {
             display: inline-block;
             width: 1.2rem;
@@ -96,6 +101,11 @@
 
         .x {
             background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 1024 1024"%3E%3Cpath d="M195.2 195.2a64 64 0 0 1 90.496 0L512 421.504 738.304 195.2a64 64 0 0 1 90.496 90.496L602.496 512 828.8 738.304a64 64 0 0 1-90.496 90.496L512 602.496 285.696 828.8a64 64 0 0 1-90.496-90.496L421.504 512 195.2 285.696a64 64 0 0 1 0-90.496z"%3E%3C/path%3E%3C/svg%3E');
+            cursor: pointer;
+        }
+
+        .delete {
+            background-image: url('data:image/svg+xml,%3Csvg viewBox="0 0 1024 1024" fill="currentColor" xmlns="http://www.w3.org/2000/svg"%3E%3Cpath d="M160 256H96a32 32 0 0 1 0-64h256V95.936a32 32 0 0 1 32-32h256a32 32 0 0 1 32 32V192h256a32 32 0 1 1 0 64h-64v672a32 32 0 0 1-32 32H192a32 32 0 0 1-32-32V256zm448-64v-64H416v64h192zM224 896h576V256H224v640zm192-128a32 32 0 0 1-32-32V416a32 32 0 0 1 64 0v320a32 32 0 0 1-32 32zm192 0a32 32 0 0 1-32-32V416a32 32 0 0 1 64 0v320a32 32 0 0 1-32 32z" fill="%23000000"%3E%3C/path%3E%3C/svg%3E');
             cursor: pointer;
         }
 
@@ -147,19 +157,20 @@
         }
 
         #columnCurrent .task {
-            box-shadow: 5px 5px 7px 0px #bbbbbb,  inset -4px -4px 13px 4px #b7ffb7;
+            box-shadow: 5px 5px 7px 0px #bbbbbb, inset -4px -4px 13px 4px #b7ffb7;
             background-color: rgb(220 255 210);
         }
 
         #columnPending .task {
-            box-shadow: 5px 5px 7px 0px #bbbbbb,  inset -4px -4px 13px 4px #a1d3ff;
+            box-shadow: 5px 5px 7px 0px #bbbbbb, inset -4px -4px 13px 4px #a1d3ff;
             background-color: rgb(206 235 255);
         }
 
         .taskEmpty {
             background-color: rgb(249 249 249);
-            box-shadow: 5px 5px 7px 0px #bbbbbb,  inset -4px -4px 13px 4px #e3e3e3;
+            box-shadow: 5px 5px 7px 0px #bbbbbb, inset -4px -4px 13px 4px #e3e3e3;
         }
+
         .rotate45 {
             rotate: 45deg;
         }

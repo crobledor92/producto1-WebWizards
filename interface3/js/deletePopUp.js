@@ -1,6 +1,6 @@
 import { dynamicColumn } from "./getColumns.js";
 
-export function openPopUp(getID) {
+export function deletePopUp(getID) {
     const tasks = JSON.parse(localStorage.getItem("tasks"));
     tasks.forEach(item => {
         if (item.id == getID) {
@@ -23,7 +23,7 @@ export function openPopUp(getID) {
             // Crear el título del modal
             var modalTitle = document.createElement("h5");
             modalTitle.className = "modal-title";
-            modalTitle.textContent = "Editar etiqueta:";
+            modalTitle.textContent = "Eliminar tarea:";
             // Crear el botón de cierre del modal
             var closeButton = document.createElement("button");
             closeButton.type = "button";
@@ -36,35 +36,7 @@ export function openPopUp(getID) {
             // Crear el cuerpo del modal
             var modalBodyDiv = document.createElement("div");
             modalBodyDiv.className = "modal-body";
-            // Datos
-            var title = document.createElement("h1");
-            title.textContent = item.title;
-            title.setAttribute("contenteditable", "true");
-            title.id = "titleTask";
-            var taskInfo = document.createElement("div");
-            taskInfo.classList.add("task-info");
-            var descriptionDiv = createInputDiv("Descripción:", "description", "text", item.description);
-            var dateDiv = createInputDiv("Fecha limite:", "date", "datetime-local", item.endTime);
-            var membersDiv = createInputDiv("Participantes:", "members", "text", item.members);
-            function createInputDiv(labelText, id, inputType, inputValue) {
-                var div = document.createElement("div");
-                div.classList.add("inline");
-                var label = document.createElement("p");
-                label.textContent = labelText;
-                var input = document.createElement("input");
-                input.setAttribute("type", inputType);
-                input.setAttribute("id", id)
-                input.setAttribute("value", inputValue);
-                div.appendChild(label);
-                div.appendChild(input);
-                return div;
-            }
-            // Agregar los elementos al documento
-            taskInfo.appendChild(descriptionDiv);
-            taskInfo.appendChild(dateDiv);
-            taskInfo.appendChild(membersDiv);
-            modalBodyDiv.appendChild(title);
-            modalBodyDiv.appendChild(taskInfo);
+            modalBodyDiv.textContent = "Realmente quieres eliminar esta tarjeta?"
             // Crear el pie del modal
             var modalFooterDiv = document.createElement("div");
             modalFooterDiv.className = "modal-footer";
@@ -73,11 +45,11 @@ export function openPopUp(getID) {
             closeButtonFooter.type = "button";
             closeButtonFooter.className = "btn btn-secondary closeButton";
             closeButtonFooter.setAttribute("data-bs-dismiss", "modal");
-            closeButtonFooter.textContent = "Cerrar";
+            closeButtonFooter.textContent = "Cancelar";
             var saveButton = document.createElement("button");
             saveButton.type = "button";
             saveButton.className = "btn btn-primary saveButton";
-            saveButton.textContent = "Guardar Cambios";
+            saveButton.textContent = "Eliminar";
             // Agregar los botones al pie del modal
             modalFooterDiv.appendChild(closeButtonFooter);
             modalFooterDiv.appendChild(saveButton);
@@ -100,26 +72,11 @@ export function openPopUp(getID) {
             document.querySelectorAll('.saveButton').forEach(button => {
                 button.addEventListener('click', () => {
                     try {
-                        const index = tasks.findIndex(item => item.id === getID);
-                        if (index !== -1) {
-                            // Si se encuentra el elemento, realiza la edición
-                            const title = document.getElementById("titleTask").textContent;
-                            const description = document.getElementById("description").value;
-                            const date = document.getElementById("date").value;
-                            const members = document.getElementById("members").value;
-                            tasks[index].title = title;
-                            tasks[index].description = description;
-                            tasks[index].endTime = date;
-                            tasks[index].members = members;
-                            // Guarda el array actualizado en el almacenamiento local
-                            localStorage.setItem("tasks", JSON.stringify(tasks));
-                        } else {
-                            console.log("No se encontró ningún elemento con el ID proporcionado.");
-                        }
+                        localStorage.setItem("tasks", JSON.stringify(tasks.filter(item => item.id !== getID)));;
                         dynamicColumn();
                     } catch (error) {
                         console.log(error);
-                    } finally {
+                    }finally{
                         document.getElementById('modal').remove();
                     }
                 });

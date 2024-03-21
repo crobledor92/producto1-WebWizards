@@ -1,74 +1,6 @@
-import { openPopUp } from "./openPopUp.js";
-
-function dynamicColumn() {
-    const tasks = JSON.parse(localStorage.getItem("tasks"));
-    console.log("Estas son las tareas:", tasks)
-    let columnPending = document.getElementById('pendingTasks');
-    let columnCurrent = document.getElementById('currentTasks');
-    let columnComplete = document.getElementById('completeTasks');
-    tasks.forEach(objeto => {
-        if (objeto.status == "pending") {
-            createTask(columnPending);
-        } else if (objeto.status == "current") {
-            createTask(columnCurrent);
-        } else if (objeto.status == "complete") {
-            createTask(columnComplete);
-        }
-        function createTask(column) {
-            var newTask = document.createElement('div');
-            newTask.setAttribute('id', objeto.id);
-            newTask.classList.add('task', objeto.status);
-            var TaskHeader = document.createElement('div');
-            TaskHeader.classList.add('header', 'taskHeader');
-            var TaskTitle = document.createElement('h3');
-            TaskTitle.textContent = objeto.title;
-            var controls = document.createElement('div');
-            var TaskEditIcon = document.createElement('span');
-            TaskEditIcon.classList.add('edit', 'icon');
-            var TaskMoveIcon = document.createElement('span');
-            TaskMoveIcon.classList.add('move', 'icon');
-            controls.appendChild(TaskEditIcon);
-            controls.appendChild(TaskMoveIcon);
-            TaskHeader.appendChild(TaskTitle);
-            TaskHeader.appendChild(controls);
-            newTask.appendChild(TaskHeader);
-            var ulTask = document.createElement('ul');
-            var liDescription = document.createElement('li');
-            liDescription.textContent = "Descripcion: " + objeto.description;
-            var liendTime = document.createElement('li');
-            liendTime.textContent = "Fecha: " + objeto.endTime;
-            var limembers = document.createElement('li');
-            limembers.textContent = "Participantes: " + objeto.members;
-            ulTask.appendChild(liDescription);
-            ulTask.appendChild(liendTime);
-            ulTask.appendChild(limembers);
-            newTask.appendChild(ulTask);
-            column.appendChild(newTask);
-        }
-    });
-    logTagId();
-}
+import { dynamicColumn } from "./getColumns.js";
 
 dynamicColumn();
-
-
-function logTagId() {
-    const moveIcons = document.querySelectorAll('.move.icon');
-    const editIcons = document.querySelectorAll('.edit.icon');
-    moveIcons.forEach(icon => {
-        icon.addEventListener('mousedown', () => {
-            const parentTag = icon.closest('.task');
-            parentTag.setAttribute('draggable', 'true');
-        });
-    });
-    editIcons.forEach(icon => {
-        icon.addEventListener('click', () => {
-            const parentTag = icon.closest('.task');
-            const parentID = parentTag.id;
-            openPopUp(parentID);
-        });
-    });
-}
 
 document.addEventListener('dragstart', handleDragStart);
 document.addEventListener('dragend', handleDragEnd);
@@ -83,6 +15,26 @@ function handleDragEnd(e) {
     const draggedEl = e.target;
     draggedEl.classList.remove("dragging");
     draggedEl.removeAttribute('draggable');
+    const parentId = draggedEl.parentNode.id;
+    const tasks = JSON.parse(localStorage.getItem("tasks"));
+    const index = tasks.findIndex(item => item.id === draggedEl.id);
+    if (index !== -1) {
+        // Si se encuentra el elemento, realiza la edición
+        let estado = "";
+        if (parentId == "pendingTasks") {
+            estado = "pending";
+        } else if (parentId == "currentTasks") {
+            estado = "current";
+        } else if (parentId == "completeTasks") {
+            estado = "complete";
+        }
+        tasks[index].status = estado;
+        // Guarda el array actualizado en el almacenamiento local
+        localStorage.setItem("tasks", JSON.stringify(tasks));
+    } else {
+        console.log("No se encontró ningún elemento con el ID proporcionado.");
+    }
+    dynamicColumn();
 }
 
 function handleDragOver(e) {
