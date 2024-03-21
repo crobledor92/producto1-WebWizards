@@ -1,5 +1,6 @@
 import { editPopUp } from "./editPopUp.js";
 import { deletePopUp } from "./deletePopUp.js";
+import { newTaskPupUp } from "./newTaskPupUp.js";
 
 export function dynamicColumn() {
 

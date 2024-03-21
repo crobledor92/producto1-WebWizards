@@ -4,7 +4,7 @@ export function editPopUp(getID) {
     const tasks = JSON.parse(localStorage.getItem("tasks"));
     tasks.forEach(item => {
         if (item.id == getID) {
-            let taskDetailModal = document.getElementById('taskDetailModal');
+            let taskModal = document.getElementById('taskModal');
             // Crear el elemento div para el modal
             var modalDiv = document.createElement("div");
             modalDiv.id = "modal";
@@ -89,8 +89,8 @@ export function editPopUp(getID) {
             modalDialogDiv.appendChild(modalContentDiv);
             // Agregar el dialogo al modal
             modalDiv.appendChild(modalDialogDiv);
-            // Agregar el modal al cuerpo del taskDetailModal
-            taskDetailModal.appendChild(modalDiv);
+            // Agregar el modal al cuerpo del taskModal
+            taskModal.appendChild(modalDiv);
             document.querySelectorAll('.closeButton').forEach(button => {
                 button.addEventListener('click', () => {
                     document.getElementById('modal').remove();
