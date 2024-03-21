@@ -62,7 +62,9 @@ export function dynamicColumn() {
     const newTaskIcon = document.querySelectorAll('.new.icon')
     newTaskIcon.forEach(icon => {
         icon.addEventListener('click', () => {
-            newTaskPopUp();
+            const parentTag = icon.closest('.col');
+            const parentID = parentTag.id;
+            newTaskPopUp(parentID);
         });
     });
     const deleteIcon = document.querySelectorAll('.delete.icon');

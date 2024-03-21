@@ -1,13 +1,13 @@
 import { dynamicColumn } from "./getColumns.js";
 
-export function newTaskPopUp() {
+export function newTaskPopUp(getId) {
     document.getElementById('taskModal').innerHTML = `
     <div id="modal" class="modal" tabindex="-1" style="display: block;">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">Modal title</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" class="btn-close closeButton" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <div class="input-form">
@@ -26,15 +26,15 @@ export function newTaskPopUp() {
                         <label>Estado</label>
                         <div class="status-input">
                             <label>
-                                <input type="radio" name="newStatus" value="pending" checked/>
+                                <input type="radio" name="newStatus" id="pendingStatus" value="pending"/>
                                 Pendiente
                             </label>
                             <label>
-                                <input type="radio" name="newStatus" value="current" />
+                                <input type="radio" name="newStatus" id="currentStatus" value="current"/>
                                 En progreso
                             </label>
                             <label>
-                                <input type="radio" name="newStatus" value="complete" />
+                                <input type="radio" name="newStatus" id="completeStatus" value="complete"/>
                                 Completado
                             </label>
                         </div>
@@ -51,7 +51,14 @@ export function newTaskPopUp() {
             </div>
         </div>
     </div>`;
-    document.querySelectorAll('.btn-secondary.closeButton').forEach(button => {
+    if(getId == "columnPending"){
+        document.getElementById('pendingStatus').checked = true;
+    }else if(getId == "columnCurrent"){
+        document.getElementById('currentStatus').checked = true;
+    }else{
+        document.getElementById('completeStatus').checked = true;
+    }
+    document.querySelectorAll('.closeButton').forEach(button => {
         button.addEventListener('click', () => {
             document.getElementById('modal').remove();
             dynamicColumn();
