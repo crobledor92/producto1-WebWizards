@@ -58,3 +58,18 @@ main {
   display: flex;
   align-items: center;
 }
+
+.add-board-button {
+  border: 2px solid var(--secondary-color);
+  padding: 0.8rem 1rem;
+  border-radius: 5px;
+  text-decoration: none;
+  color: var(--secondary-color);
+  transition: all 0.2s;
+  
+  &:hover {
+    background-color: var(--secondary-color);
+    color: var(--light-color);
+    transition: all 0.4s;
+  }
+}

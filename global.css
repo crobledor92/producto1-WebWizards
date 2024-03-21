@@ -53,6 +53,7 @@ table {
 * {
     font-family: sans-serif;
     --primary-color: #007bff;
+    --secondary-color: #ffa500;
 	--dark-color: #000000;
     --light-color: whitesmoke;
 	--grey-color: #bcbbbb;
@@ -72,6 +73,7 @@ header {
 
 .dropdown-menu {
     padding-block: 0;
+    overflow: hidden;
 }
 
 .dropdown-divider {
@@ -85,7 +87,14 @@ header {
 
 #addBoardDropDownButton {
     text-align: center;
-    background-color: var(--primary-color);
+    color: var(--primary-color);
+    transition: all 0.2s;
+    
+    &:hover {
+        background-color: var(--primary-color);
+        color: var(--light-color);
+        transition: all 0.4s;
+    }
 }
 
 
