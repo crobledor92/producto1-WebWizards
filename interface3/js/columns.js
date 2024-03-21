@@ -43,7 +43,6 @@ function handleDragOver(e) {
     if (dragOver.matches('.task') || dragOver.matches('.taskEmpty')) {
         if (beingDragged.matches('.task') && !isDescendant(beingDragged, dragOver)) {
             allowDrop(e);
-            uptadeColumns();
         }
     }
 }
@@ -84,22 +83,4 @@ function whichChild(el) {
     let i = 0;
     while ((el = el.previousSibling) != null) ++i;
     return i;
-}
-
-function uptadeColumns() {
-    const tags = document.querySelectorAll('.tasks');
-
-    tags.forEach(tag => {
-        const tagEmpty = tag.querySelector('.taskEmpty');
-        const hasTag = tag.querySelector('.task');
-
-        if (!hasTag && !tagEmpty) {
-            const newTager = document.createElement('div');
-            newTager.classList.add('taskEmpty');
-            newTager.textContent = "Columna vacía, añade o arrastra una tarjeta hasta aquí.";
-            tag.appendChild(newTager);
-        } else if (hasTag && tagEmpty) {
-            tag.removeChild(tagEmpty);
-        }
-    });
 }

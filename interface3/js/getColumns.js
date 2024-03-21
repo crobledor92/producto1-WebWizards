@@ -76,4 +76,17 @@ export function dynamicColumn() {
             parentTag.setAttribute('draggable', 'true');
         });
     });
+    const tags = document.querySelectorAll('.tasks');
+    tags.forEach(tag => {
+        const tagEmpty = tag.querySelector('.taskEmpty');
+        const hasTag = tag.querySelector('.task');
+        if (!hasTag && !tagEmpty) {
+            const newTager = document.createElement('div');
+            newTager.classList.add('taskEmpty');
+            newTager.textContent = "Columna vacía, añade o arrastra una tarjeta hasta aquí.";
+            tag.appendChild(newTager);
+        } else if (hasTag && tagEmpty) {
+            tag.removeChild(tagEmpty);
+        }
+    });
 }
