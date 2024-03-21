@@ -1,0 +1,12 @@
+.newBoardTitle {
+    display: flex;
+    flex-direction: column;
+    font-size: xx-large;
+    text-align: center;
+}
+
+#returnButton {
+    margin-top: 2rem;
+    display: block;
+    margin-left: 5rem;
+}
