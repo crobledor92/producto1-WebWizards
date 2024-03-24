@@ -1,102 +1,87 @@
 import { dynamicColumn } from "./getColumns.js";
+import { colours } from "../../constants/colors.js";
+import { changeColour } from "./newTaskPopUp.js";
 
 export function editPopUp(getID) {
     const tasks = JSON.parse(localStorage.getItem("tasks"));
     tasks.forEach(item => {
         if (item.id == getID) {
             let taskModal = document.getElementById('taskModal');
-            // Crear el elemento div para el modal
-            var modalDiv = document.createElement("div");
-            modalDiv.id = "modal";
-            modalDiv.className = "modal";
-            modalDiv.tabIndex = "-1";
-            modalDiv.setAttribute("style", "display: block;");
-            // Crear el elemento div para el dialogo
-            var modalDialogDiv = document.createElement("div");
-            modalDialogDiv.className = "modal-dialog";
-            // Crear el elemento div para el contenido del modal
-            var modalContentDiv = document.createElement("div");
-            modalContentDiv.className = "modal-content";
-            // Crear el elemento div para el encabezado del modal
-            var modalHeaderDiv = document.createElement("div");
-            modalHeaderDiv.className = "modal-header";
-            // Crear el título del modal
-            var modalTitle = document.createElement("h5");
-            modalTitle.className = "modal-title";
-            modalTitle.textContent = "Editar etiqueta:";
-            // Crear el botón de cierre del modal
-            var closeButton = document.createElement("button");
-            closeButton.type = "button";
-            closeButton.className = "btn-close closeButton";
-            closeButton.setAttribute("data-bs-dismiss", "modal");
-            closeButton.setAttribute("aria-label", "Close");
-            // Agregar el título y el botón de cierre al encabezado del modal
-            modalHeaderDiv.appendChild(modalTitle);
-            modalHeaderDiv.appendChild(closeButton);
-            // Crear el cuerpo del modal
-            var modalBodyDiv = document.createElement("div");
-            modalBodyDiv.className = "modal-body";
-            // Datos
-            var title = document.createElement("h1");
-            title.textContent = item.title;
-            title.setAttribute("contenteditable", "true");
-            title.id = "titleTask";
-            var taskInfo = document.createElement("div");
-            taskInfo.classList.add("task-info");
-            var descriptionDiv = createInputDiv("Descripción:", "description", "text", item.description);
-            var dateDiv = createInputDiv("Fecha limite:", "date", "datetime-local", item.endTime);
-            var membersDiv = createInputDiv("Participantes:", "members", "text", item.members);
-            function createInputDiv(labelText, id, inputType, inputValue) {
-                var div = document.createElement("div");
-                div.classList.add("inline");
-                var label = document.createElement("p");
-                label.textContent = labelText;
-                var input = document.createElement("input");
-                input.setAttribute("type", inputType);
-                input.setAttribute("id", id)
-                input.setAttribute("value", inputValue);
-                div.appendChild(label);
-                div.appendChild(input);
-                return div;
-            }
-            // Agregar los elementos al documento
-            taskInfo.appendChild(descriptionDiv);
-            taskInfo.appendChild(dateDiv);
-            taskInfo.appendChild(membersDiv);
-            modalBodyDiv.appendChild(title);
-            modalBodyDiv.appendChild(taskInfo);
-            // Crear el pie del modal
-            var modalFooterDiv = document.createElement("div");
-            modalFooterDiv.className = "modal-footer";
-            // Crear los botones del pie del modal
-            var closeButtonFooter = document.createElement("button");
-            closeButtonFooter.type = "button";
-            closeButtonFooter.className = "btn btn-secondary closeButton";
-            closeButtonFooter.setAttribute("data-bs-dismiss", "modal");
-            closeButtonFooter.textContent = "Cerrar";
-            var saveButton = document.createElement("button");
-            saveButton.type = "button";
-            saveButton.className = "btn btn-primary saveButton";
-            saveButton.textContent = "Guardar Cambios";
-            // Agregar los botones al pie del modal
-            modalFooterDiv.appendChild(closeButtonFooter);
-            modalFooterDiv.appendChild(saveButton);
-            // Agregar el encabezado, el cuerpo y el pie al contenido del modal
-            modalContentDiv.appendChild(modalHeaderDiv);
-            modalContentDiv.appendChild(modalBodyDiv);
-            modalContentDiv.appendChild(modalFooterDiv);
-            // Agregar el contenido al dialogo del modal
-            modalDialogDiv.appendChild(modalContentDiv);
-            // Agregar el dialogo al modal
-            modalDiv.appendChild(modalDialogDiv);
-            // Agregar el modal al cuerpo del taskModal
-            taskModal.appendChild(modalDiv);
+
+            // Se le añade contenido al modal con la info de la tarea
+            const modalContent = `
+                <div id="modal" class="modal" tabindex="-1" style="display: block;">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header edit-modal-header">
+                                <h1 contenteditable="true" id="titleTask">${item.title}</h1>
+                                <div class="input-group" id="edit-colour-select">
+                                    <span id="colour-shade" class="input-group-text bg-light"></span>
+                                    <select id="colour-select" class="form-select form-select-sm" aria-label=".form-select-sm example" data-previous-colour="light" name="colour">
+                                        <option value="${colours.light.bsName}">${colours.light.name}</option>
+                                        <option value="${colours.primary.bsName}">${colours.primary.name}</option>
+                                        <option value="${colours.success.bsName}">${colours.success.name}</option>
+                                        <option value="${colours.danger.bsName}">${colours.danger.name}</option>
+                                        <option value="${colours.warning.bsName}">${colours.warning.name}</option>
+                                        <option value="${colours.info.bsName}">${colours.info.name}</option>
+                                        <option value="${colours.secondary.bsName}">${colours.secondary.name}</option>
+                                        <option value="${colours.dark.bsName}">${colours.dark.name}</option>
+                                    </select>
+                                </div>
+                                <button type="button" class="btn-close closeButton" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="task-info">
+                                    <div class="inline">
+                                        <p>Fecha límite:</p>
+                                        <input type="datetime-local" class="date-input" id="date" value="${item.endTime}">
+                                    </div>
+                                    <div class="inline">
+                                        <p>Descripción:</p>
+                                        <h2 contenteditable="true" id="description">${item.description}</h2>
+                                    </div>
+                                    <div class="inline">
+                                        <p>Participantes:</p>
+                                        <h2 contenteditable="true" id="members">${item.members}</h2>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary closeButton" data-bs-dismiss="modal">Cerrar</button>
+                                <button type="button" class="btn btn-primary saveButton">Guardar Cambios</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            taskModal.innerHTML = modalContent;
+
+            // Se marca el color selected que venía en la tarea
+            const colourSelector = document.getElementById("colour-select");
+            const colourSelectOptions = Array.from(colourSelector.children);
+            colourSelectOptions.forEach(option => {
+                if (option.value === item.colour) {
+                    option.selected = true
+                }
+            })
+
+            //Se pinta la etiqueta del color select
+            const colourShade = document.getElementById("colour-shade");
+            colourShade.classList.remove(`bg-light`)
+            colourShade.classList.add(`bg-${colours[item.colour].bsName}`);
+            colourSelector.dataset.previousColour = item.colour;
+            
+
+            //Se añade la funcionalidad a los botones de cerrar
             document.querySelectorAll('.closeButton').forEach(button => {
                 button.addEventListener('click', () => {
                     document.getElementById('modal').remove();
                     dynamicColumn();
                 });
             });
+
+            //Se añade la funcionalidad al botón de guardar
             document.querySelectorAll('.saveButton').forEach(button => {
                 button.addEventListener('click', () => {
                     try {
@@ -104,13 +89,16 @@ export function editPopUp(getID) {
                         if (index !== -1) {
                             // Si se encuentra el elemento, realiza la edición
                             const title = document.getElementById("titleTask").textContent;
-                            const description = document.getElementById("description").value;
+                            const description = document.getElementById("description").textContent;
                             const date = document.getElementById("date").value;
-                            const members = document.getElementById("members").value;
+                            const members = document.getElementById("members").textContent;
+                            const colour = document.getElementById("colour-select").value;
+
                             tasks[index].title = title;
                             tasks[index].description = description;
                             tasks[index].endTime = date;
                             tasks[index].members = members;
+                            tasks[index].colour = colour;
                             // Guarda el array actualizado en el almacenamiento local
                             localStorage.setItem("tasks", JSON.stringify(tasks));
                         } else {
@@ -126,4 +114,6 @@ export function editPopUp(getID) {
             });
         }
     });
+
+    changeColour();
 }

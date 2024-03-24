@@ -15,6 +15,7 @@ export function dynamicColumn() {
     columnPending.innerHTML = "";
     columnCurrent.innerHTML = "";
     columnComplete.innerHTML = "";
+
     tasks.forEach(objeto => {
         if (objeto.status == "pending") {
             createTask(columnPending);
@@ -27,38 +28,31 @@ export function dynamicColumn() {
             var newTask = document.createElement('div');
             newTask.setAttribute('id', objeto.id);
             newTask.classList.add('task', objeto.status);
-            var TaskHeader = document.createElement('div');
-            TaskHeader.classList.add('header', 'taskHeader');
-            var TaskTitle = document.createElement('h3');
-            TaskTitle.textContent = objeto.title;
-            var controls = document.createElement('div');
-            controls.classList.add('controls');
-            var TaskDeleteIcon = document.createElement('span');
-            TaskDeleteIcon.classList.add('delete', 'icon');
-            var TaskEditIcon = document.createElement('span');
-            TaskEditIcon.classList.add('edit', 'icon');
-            var TaskMoveIcon = document.createElement('span');
-            TaskMoveIcon.classList.add('move', 'icon');
-            controls.appendChild(TaskDeleteIcon);
-            controls.appendChild(TaskEditIcon);
-            controls.appendChild(TaskMoveIcon);
-            TaskHeader.appendChild(TaskTitle);
-            TaskHeader.appendChild(controls);
-            newTask.appendChild(TaskHeader);
-            var ulTask = document.createElement('ul');
-            var liDescription = document.createElement('li');
-            liDescription.textContent = "Descripcion: " + objeto.description;
-            var liendTime = document.createElement('li');
-            liendTime.textContent = "Fecha: " + objeto.endTime;
-            var limembers = document.createElement('li');
-            limembers.textContent = "Participantes: " + objeto.members;
-            ulTask.appendChild(liDescription);
-            ulTask.appendChild(liendTime);
-            ulTask.appendChild(limembers);
-            newTask.appendChild(ulTask);
+
+            const iconsColour = objeto.colour === 'warning' || objeto.colour === 'light' ? '-dark' : '-light' 
+
+            newTask.innerHTML = `
+                <div class="card text-bg-${objeto.colour} mb-3" style="max-width: 18rem;">
+                    <div class="card-header">
+                        <h3>${objeto.endTime}</h3>
+                        <div class="controls">
+                            <span class="delete delete${iconsColour} icon"></span>
+                            <span class="edit edit${iconsColour} icon"></span>
+                            <span class="move move${iconsColour} icon"></span>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">${objeto.title}</h5>
+                        <p class="card-text">${objeto.description}</p>
+                        <p class="card-text">${objeto.members}</p>
+                    </div>
+                </div>`;
+
             column.appendChild(newTask);
         }
     });
+
+    // Botón de creación de tarea
     const newTaskIcon = document.querySelectorAll('.new.icon')
     newTaskIcon.forEach(icon => {
         icon.addEventListener('click', () => {
@@ -67,6 +61,8 @@ export function dynamicColumn() {
             newTaskPopUp(parentID);
         });
     });
+
+    //Botón de eliminación de tarea
     const deleteIcon = document.querySelectorAll('.delete.icon');
     deleteIcon.forEach(icon => {
         icon.addEventListener('click', () => {
@@ -75,6 +71,8 @@ export function dynamicColumn() {
             deletePopUp(parentID);
         });
     });
+
+    // Botón para draggear las tareas (subelementos)
     const moveIcons = document.querySelectorAll('.move.icon');
     moveIcons.forEach(icon => {
         icon.addEventListener('mousedown', () => {
@@ -82,6 +80,8 @@ export function dynamicColumn() {
             parentTag.setAttribute('draggable', 'true');
         });
     });
+
+    // Botón para editar la información de la tarea ()
     const editIcons = document.querySelectorAll('.edit.icon');
     editIcons.forEach(icon => {
         icon.addEventListener('click', () => {
@@ -91,8 +91,10 @@ export function dynamicColumn() {
         });
     });
 
-    const tags = document.querySelectorAll('.tasks');
-    tags.forEach(tag => {
+
+    // Se añade el contenido de "columna vacía" para las secciones que no tengan subelementos asociados.
+    const allTasks = document.querySelectorAll('.tasks');
+    allTasks.forEach(tag => {
         const tagEmpty = tag.querySelector('.taskEmpty');
         const hasTag = tag.querySelector('.task');
         if (!hasTag && !tagEmpty) {

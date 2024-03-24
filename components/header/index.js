@@ -23,7 +23,6 @@ export async function addHeader () {
             let itemHTML = `<a class="dropdown-item" href="dashboard.html?boardId=${board.id}">${board.title}</a>`;
 
             if (dropdownMenu.innerHTML.trim() !== "") {
-                console.log("se añade un divider")
                 itemHTML = '<div class="dropdown-divider"></div>' + itemHTML;
             }
             

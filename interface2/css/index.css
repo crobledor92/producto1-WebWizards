@@ -5,8 +5,14 @@
     text-align: center;
 }
 
-#returnButton {
-    margin-top: 2rem;
-    display: block;
-    margin-left: 5rem;
+.add-board-form {
+    max-width: 1000px;
+    margin: auto;
+    padding-inline: 5rem;
+}
+
+.add-board-buttons-section {
+    display: flex;
+    justify-content: center;
+    gap: 5rem;
 }

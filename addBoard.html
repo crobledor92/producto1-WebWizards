@@ -13,25 +13,24 @@
         <div id="header-container"></div>
         <main>
             <h2 class="newBoardTitle">Crear un nuevo Tablero</h2><br><br>
-            <form id="addBoardForm">
-                <div class="input-form">
-                    <label for="inputTitle">Nombre del tablero:</label>
-                    <input required id="inputTitle" type="text" name="title">
+            <form class="add-board-form">
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="floatingInput" placeholder="" name="title" required>
+                    <label for="floatingInput">Título</label>
                 </div>
-                <div class="input-form">
-                    <label for="inputDescription">Breve descripción:</label>
-                    <textarea id="inputDescription" type="text" name="description" rows="5"></textarea>
+                <div class="form-floating">
+                    <textarea class="form-control" placeholder="" id="floatingTextarea" name="description" rows="1" required></textarea>
+                    <label for="floatingTextarea">Descripción</label>
                 </div>
-                <div class="input-form">
-                    <label for="inputImage">Carga una imagen:</label>
-                    <input id="inputImage" name="image" type="file" id="imageInput" accept="image/*">
+                <div class="mb-3 mt-3">
+                    <label for="formFile" class="form-label">Imagen de portada</label>
+                    <input class="form-control" type="file" id="formFile" name="image" accept="image/*">
+                  </div>
+                <div class="add-board-buttons-section">
+                    <button type="submit" class="btn btn-primary">Crear</button>
+                    <button id="returnButton" type="button" onclick="goIndex()" class="btn btn-secondary">Cancelar</button>
                 </div>
-
-                <input type="hidden" id="imagen_seleccionada" name="imagen">
-                <br>
-                <button type="submit" class="btn btn-primary">Crear Tablero</button>
-            </form>
-            <button id="returnButton" type="button" onclick="goIndex()" class="btn btn-primary">Volver</button>
+              </form>
         </main>
         <div id="footer-container"></div>
 

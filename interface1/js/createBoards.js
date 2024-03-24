@@ -26,7 +26,7 @@ export async function createBoards() {
 
         return (
         `<div class="card" style="width: 20rem;">
-            <a id="${board.id}" class="delete-board-button">
+            <a id="${board.id}" boardTitle="${board.title}" class="delete-board-button">
                 ${deleteIconHTML}
             </a>
             <img src=${image} class="card-img-top board-image" alt="...">
@@ -44,19 +44,57 @@ export async function createBoards() {
     boardsSection.insertAdjacentHTML("afterbegin", allHtmlBoards);
 
     // Se añaden los eventlisteners del botón de eliminar para que abran el modal
-    openModal()
+    openModal();
+
+    // Se le da funcionalidad a los botones del modal
+    modalFunc();
 }
 
 function openModal() {
     const deleteButtons = document.querySelectorAll(".delete-board-button");
     const modal = document.getElementById('myModal')
+    const titleParagraph = modal.querySelector('.modal-body > p');
 
     deleteButtons.forEach(button => {
         button.addEventListener('click', () => {
             const boardToDelete = button.getAttribute("id");
+            const boardTitle = button.getAttribute("boardTitle");
             modal.boardToDelete = boardToDelete
+            titleParagraph.innerHTML = boardTitle
+            
             modal.style.display = "block";          
         })
+    })
+}
+
+function modalFunc() {
+    const modal = document.getElementById('myModal')
+    const closeModalButton = document.querySelectorAll(".close-button");
+    
+    closeModalButton.forEach(button => {
+        button.addEventListener('click', () => {
+            modal.boardToDelete = "";
+            modal.style.display = "none"; 
+        } )
+    })
+
+    const deleteBoard = document.querySelector('.confirm-button');
+
+    deleteBoard.addEventListener('click', async () => {
+        const boards = JSON.parse(localStorage.getItem("boards"));
+        const currentBoards = boards.filter(board => board.id !== modal.boardToDelete);
+
+        localStorage.setItem("boards", JSON.stringify(currentBoards));
+        
+        const oldBoardsHTML = document.querySelectorAll(".card")
+
+        oldBoardsHTML.forEach(board => {
+            board.remove();
+        })
+
+        modal.style.display = "none"; 
+
+        await createBoards();
     })
 }
 
