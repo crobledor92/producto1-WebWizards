@@ -1,6 +1,6 @@
 export function dataProvider() {
     if (!localStorage.getItem("tasks")){
-        fetch('data.json')
+        fetch('/data/tasks.json')
             .then(res => res.json())
             .then(tasks => {
                 localStorage.setItem("tasks", JSON.stringify(tasks))
@@ -8,7 +8,7 @@ export function dataProvider() {
     }
 
     if(!localStorage.getItem("boards")) {
-        fetch("board.json")
+        fetch("/data/board.json")
         .then(res => res.json())
         .then(boards => {
             localStorage.setItem("boards", JSON.stringify(boards))

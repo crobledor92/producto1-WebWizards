@@ -34,7 +34,7 @@ export function dynamicColumn() {
             newTask.innerHTML = `
                 <div class="card text-bg-${objeto.colour} mb-3" style="max-width: 18rem;">
                     <div class="card-header">
-                        <h3>${objeto.endTime}</h3>
+                        <p>${objeto.endTime}</p>
                         <div class="controls">
                             <span class="delete delete${iconsColour} icon"></span>
                             <span class="edit edit${iconsColour} icon"></span>
@@ -42,9 +42,9 @@ export function dynamicColumn() {
                         </div>
                     </div>
                     <div class="card-body">
-                        <h5 class="card-title">${objeto.title}</h5>
+                        <h1 class="card-title">${objeto.title}</h1>
                         <p class="card-text">${objeto.description}</p>
-                        <p class="card-text">${objeto.members}</p>
+                        <p class="card-members">${objeto.members}</p>
                     </div>
                 </div>`;
 
@@ -52,8 +52,8 @@ export function dynamicColumn() {
         }
     });
 
-    // Botón de creación de tarea
-    const newTaskIcon = document.querySelectorAll('.new.icon')
+    // Funcionalidad botón de creación de tarea
+    const newTaskIcon = document.querySelectorAll('.add-task-icon-button')
     newTaskIcon.forEach(icon => {
         icon.addEventListener('click', () => {
             const parentTag = icon.closest('.col');
@@ -62,7 +62,7 @@ export function dynamicColumn() {
         });
     });
 
-    //Botón de eliminación de tarea
+    // Funcionalidad botón de eliminación de tarea
     const deleteIcon = document.querySelectorAll('.delete.icon');
     deleteIcon.forEach(icon => {
         icon.addEventListener('click', () => {

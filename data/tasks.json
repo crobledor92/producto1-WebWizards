@@ -11,7 +11,7 @@
             "Alice",
             "David"
         ],
-        "colour": "light",
+        "colour": "primary",
         "boardId": "1"
     },
     {
@@ -41,7 +41,7 @@
             "Alice",
             "David"
         ],
-        "colour": "light",
+        "colour": "success",
         "boardId": "1"
     },
     {
@@ -56,7 +56,7 @@
             "Alice",
             "David"
         ],
-        "colour": "light",
+        "colour": "warning",
         "boardId": "1"
     },
     {
@@ -72,7 +72,7 @@
             "Sarah",
             "Tom"
         ],
-        "colour": "light",
+        "colour": "danger",
         "boardId": "1"
     },
     {
@@ -87,6 +87,7 @@
             "Sophia",
             "Oliver"
         ],
+        "colour": "warning",
         "boardId": "2"
     },
     {
@@ -101,6 +102,7 @@
             "Jack",
             "Ava"
         ],
+        "colour": "danger",
         "boardId": "2"
     }
 ]
