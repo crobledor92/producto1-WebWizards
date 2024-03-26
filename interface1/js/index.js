@@ -6,7 +6,7 @@ import { dataProvider } from "./dataProvider.js";
 document.addEventListener('DOMContentLoaded', async () => {
 
     // se provee al local storage con tableros y tareas que lee de los .JSON 
-    dataProvider();
+    await dataProvider();
 
     //Se añade el header y footer
     await addHeader();
